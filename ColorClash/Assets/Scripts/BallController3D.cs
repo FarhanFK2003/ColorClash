@@ -65,3 +65,101 @@ public class BallController3D : MonoBehaviour
         return ray.GetPoint(distance);
     }
 }
+
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+
+//public class BallController3D : MonoBehaviour
+//{
+//    private Vector3 dragStartPos;
+//    private Vector3 dragReleasePos;
+//    private Rigidbody rb;
+//    private LineRenderer lineRenderer;
+
+//    public float launchForceMultiplier = 5f;
+//    public int trajectoryPoints = 30;
+//    public float timeBetweenPoints = 0.1f;
+
+//    void Start()
+//    {
+//        rb = GetComponent<Rigidbody>();
+//        lineRenderer = GetComponent<LineRenderer>();
+//        lineRenderer.positionCount = trajectoryPoints;
+//    }
+
+//    void Update()
+//    {
+//        if (Input.touchCount > 0)
+//        {
+//            Touch touch = Input.GetTouch(0);
+//            switch (touch.phase)
+//            {
+//                case TouchPhase.Began:
+//                    DragStart(touch);
+//                    break;
+//                case TouchPhase.Moved:
+//                    Dragging(touch);
+//                    break;
+//                case TouchPhase.Ended:
+//                    DragRelease(touch);
+//                    break;
+//            }
+//        }
+//    }
+
+//    private void DragStart(Touch touch)
+//    {
+//        dragStartPos = GetWorldPosition(touch.position);
+//    }
+
+//    private void Dragging(Touch touch)
+//    {
+//        Vector3 currentPos = GetWorldPosition(touch.position);
+//        Vector3 diff = currentPos - dragStartPos;
+
+//        DrawTrajectory(diff);
+//    }
+
+//    private void DragRelease(Touch touch)
+//    {
+//        dragReleasePos = GetWorldPosition(touch.position);
+//        Vector3 dragVector = dragReleasePos - dragStartPos;
+//        Vector3 launchForce = dragVector * launchForceMultiplier;
+//        rb.AddForce(launchForce, ForceMode.Impulse);
+
+//        lineRenderer.positionCount = 0; // Hide the trajectory when the ball is launched
+//    }
+
+//    private Vector3 GetWorldPosition(Vector3 screenPosition)
+//    {
+//        Ray ray = Camera.main.ScreenPointToRay(screenPosition);
+//        Plane plane = new Plane(Vector3.up, Vector3.zero);
+//        float distance;
+//        plane.Raycast(ray, out distance);
+//        return ray.GetPoint(distance);
+//    }
+
+//    private void DrawTrajectory(Vector3 dragVector)
+//    {
+//        Vector3 launchForce = dragVector * launchForceMultiplier;
+//        Vector3 currentPosition = transform.position;
+//        Vector3 currentVelocity = launchForce / rb.mass;
+
+//        for (int i = 0; i < trajectoryPoints; i++)
+//        {
+//            lineRenderer.SetPosition(i, currentPosition);
+
+//            currentPosition += currentVelocity * timeBetweenPoints;
+//            currentVelocity += Physics.gravity * timeBetweenPoints;
+//        }
+//    }
+
+//    private void OnCollisionEnter(Collision collision)
+//    {
+//        if (collision.gameObject.CompareTag("Blue Box"))
+//        {
+//            collision.gameObject.GetComponent<Renderer>().material.color = Color.red;
+//        }
+//    }
+//}

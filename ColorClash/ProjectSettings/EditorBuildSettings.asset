@@ -4,7 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Arts_Farhan.unity
+    guid: 133377457a2642b428c77418dd6ff53b
+  - enabled: 1
+    path: Assets/Scenes/S1_Farhan.unity
+    guid: a67cbf31b81f41f4b9691aa04947ae5f
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000,
       guid: 7a478aeb0710a404b9c6e491fbc554d0, type: 2}
