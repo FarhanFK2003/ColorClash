@@ -1187,26 +1187,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform
       objectReference: {fileID: 0}
-    - target: {fileID: 7984748243280183679, guid: 21b2faf29cf49804092766faa49949e4,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8004931974103210680, guid: 21b2faf29cf49804092766faa49949e4,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8365373944264997741, guid: 21b2faf29cf49804092766faa49949e4,
-        type: 3}
-      propertyPath: m_TagString
-      value: Wall
-      objectReference: {fileID: 0}
-    - target: {fileID: 8489138275813712042, guid: 21b2faf29cf49804092766faa49949e4,
-        type: 3}
-      propertyPath: m_TagString
-      value: Wall
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1292,11 +1272,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CollidingWalls
-      objectReference: {fileID: 0}
-    - target: {fileID: 4134486167278515041, guid: 7c2ebb6e575260749be55b4dab1e4435,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6556440876415195574, guid: 7c2ebb6e575260749be55b4dab1e4435,
         type: 3}
