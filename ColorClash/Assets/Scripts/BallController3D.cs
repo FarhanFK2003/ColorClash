@@ -1,71 +1,73 @@
-using UnityEngine;
+//using UnityEngine;
 
-public class BallController3D : MonoBehaviour
-{
-    public float power = 10f;
-    public float maxDrag = 5f;
-    public Rigidbody rb;
-    public LineRenderer lr;
+//public class BallController3D : MonoBehaviour
+//{
+//    public float power = 10f;
+//    public float maxDrag = 5f;
+//    public Rigidbody rb;
+//    public LineRenderer lr;
 
-    private Vector3 dragStartPos;
-    private Touch touch;
+//    private Vector3 dragStartPos;
+//    private Touch touch;
 
-    private void Update()
-    {
-        if (Input.touchCount > 0)
-        {
-            touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Began)
-            {
-                DragStart();
-            }
-            if (touch.phase == TouchPhase.Moved)
-            {
-                Dragging();
-            }
-            if (touch.phase == TouchPhase.Ended)
-            {
-                DragRelease();
-            }
-        }
-    }
+//    private void Update()
+//    {
+//        if (Input.touchCount > 0)
+//        {
+//            touch = Input.GetTouch(0);
+//            if (touch.phase == TouchPhase.Began)
+//            {
+//                DragStart();
+//            }
+//            if (touch.phase == TouchPhase.Moved)
+//            {
+//                Dragging();
+//            }
+//            if (touch.phase == TouchPhase.Ended)
+//            {
+//                DragRelease();
+//            }
+//        }
+//    }
 
-    private void DragStart()
-    {
-        dragStartPos = GetWorldPositionOnPlane(touch.position);
-        lr.positionCount = 1;
-        lr.SetPosition(0, dragStartPos);
-    }
+//    private void DragStart()
+//    {
+//        dragStartPos = GetWorldPositionOnPlane(touch.position);
+//        lr.positionCount = 1;
+//        lr.SetPosition(0, dragStartPos);
+//    }
 
-    private void Dragging()
-    {
-        Vector3 draggingPos = GetWorldPositionOnPlane(touch.position);
-        lr.positionCount = 2;
-        lr.SetPosition(1, draggingPos);
-    }
+//    private void Dragging()
+//    {
+//        Vector3 draggingPos = GetWorldPositionOnPlane(touch.position);
+//        lr.positionCount = 2;
+//        lr.SetPosition(1, draggingPos);
+//    }
 
-    private void DragRelease()
-    {
-        lr.positionCount = 0;
+//    private void DragRelease()
+//    {
+//        lr.positionCount = 0;
 
-        Vector3 dragReleasePos = GetWorldPositionOnPlane(touch.position);
+//        Vector3 dragReleasePos = GetWorldPositionOnPlane(touch.position);
 
-        Vector3 force = dragStartPos - dragReleasePos;
-        Vector3 clampedForce = Vector3.ClampMagnitude(force, maxDrag) * power;
-        rb.AddForce(clampedForce, ForceMode.Impulse);
-    }
+//        Vector3 force = dragStartPos - dragReleasePos;
+//        Vector3 clampedForce = Vector3.ClampMagnitude(force, maxDrag) * power;
+//        rb.AddForce(clampedForce, ForceMode.Impulse);
+//    }
 
-    private Vector3 GetWorldPositionOnPlane(Vector3 screenPosition)
-    {
-        // Assume the plane is at z = 0 (ground level)
-        Plane plane = new Plane(Vector3.up, Vector3.zero);
-        Ray ray = Camera.main.ScreenPointToRay(screenPosition);
-        float distance;
-        plane.Raycast(ray, out distance);
-        return ray.GetPoint(distance);
-    }
-}
+//    private Vector3 GetWorldPositionOnPlane(Vector3 screenPosition)
+//    {
+//        // Assume the plane is at z = 0 (ground level)
+//        Plane plane = new Plane(Vector3.up, Vector3.zero);
+//        Ray ray = Camera.main.ScreenPointToRay(screenPosition);
+//        float distance;
+//        plane.Raycast(ray, out distance);
+//        return ray.GetPoint(distance);
+//    }
+//}
 
+
+// Noman
 //using System.Collections;
 //using System.Collections.Generic;
 //using UnityEngine;
@@ -163,3 +165,100 @@ public class BallController3D : MonoBehaviour
 //        }
 //    }
 //}
+
+
+using UnityEngine;
+
+public class BallController3D : MonoBehaviour
+{
+    public float power = 10f;
+    public float maxDrag = 5f;
+    public Rigidbody rb;
+    public LineRenderer lr;
+
+    private Vector3 dragStartPos;
+    private bool isDragging = false;
+    private Camera mainCamera;
+    private GameObject bluePlayer;
+
+    private void Start()
+    {
+        // Ensure the ball has a Rigidbody and LineRenderer component
+        if (rb == null)
+            rb = GetComponent<Rigidbody>();
+
+        if (lr == null)
+            lr = GetComponent<LineRenderer>();
+
+        mainCamera = Camera.main;
+        lr.positionCount = 0; // Initially hide the LineRenderer
+
+        // Find the blue player in the scene
+        bluePlayer = GameObject.FindGameObjectWithTag("BluePlayer");
+    }
+
+    private void Update()
+    {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            Vector3 touchPosition = GetWorldPositionOnPlane(touch.position);
+
+            if (touch.phase == TouchPhase.Began)
+            {
+                if (Vector3.Distance(touchPosition, bluePlayer.transform.position) < 1f) // Adjust this distance threshold as needed
+                {
+                    DragStart(touch);
+                }
+            }
+            else if (touch.phase == TouchPhase.Moved && isDragging)
+            {
+                Dragging(touch);
+            }
+            else if (touch.phase == TouchPhase.Ended && isDragging)
+            {
+                DragRelease(touch);
+            }
+        }
+    }
+
+    private void DragStart(Touch touch)
+    {
+        dragStartPos = GetWorldPositionOnPlane(touch.position);
+        lr.positionCount = 1;
+        lr.SetPosition(0, dragStartPos);
+        isDragging = true;
+    }
+
+    private void Dragging(Touch touch)
+    {
+        Vector3 draggingPos = GetWorldPositionOnPlane(touch.position);
+        lr.positionCount = 2;
+        lr.SetPosition(1, draggingPos);
+    }
+
+    private void DragRelease(Touch touch)
+    {
+        lr.positionCount = 0;
+        isDragging = false;
+
+        Vector3 dragReleasePos = GetWorldPositionOnPlane(touch.position);
+
+        Vector3 force = dragStartPos - dragReleasePos;
+        Vector3 clampedForce = Vector3.ClampMagnitude(force, maxDrag) * power;
+        rb.AddForce(clampedForce, ForceMode.Impulse);
+    }
+
+    private Vector3 GetWorldPositionOnPlane(Vector3 screenPosition)
+    {
+        Plane plane = new Plane(Vector3.up, Vector3.zero);
+        Ray ray = mainCamera.ScreenPointToRay(screenPosition);
+        if (plane.Raycast(ray, out float distance))
+        {
+            return ray.GetPoint(distance);
+        }
+        return Vector3.zero; // Return a default value if the ray does not hit the plane
+    }
+}
+
+

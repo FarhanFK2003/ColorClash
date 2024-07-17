@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Logging: 1
   m_AutomaticPerformanceModeEnabled: 1
+  m_AutomaticGameModeEnabled: 0
   m_EnableBoostOnStartup: 1
   m_StatsLoggingFrequencyInFrames: 50
   m_IndexerSettings:
@@ -313,6 +314,6 @@ MonoBehaviour:
     m_Name: Default Scaler Profile
   m_DefaultScalerProfilerIndex: 0
   k_AssetVersion: 2
-  m_SamsungProviderLogging: 0
+  m_SamsungProviderLogging: 1
   m_HighSpeedVRR: 0
   m_AutomaticVRR: 1
