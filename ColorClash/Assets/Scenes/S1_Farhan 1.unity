@@ -998,7 +998,7 @@ PrefabInstance:
     - target: {fileID: 8965891470268388150, guid: 92ed6bcc53e42bd449e3e330842fd13e,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7645285640613965318, guid: 92ed6bcc53e42bd449e3e330842fd13e, type: 3}
@@ -1803,12 +1803,12 @@ SceneRoots:
   - {fileID: 699883766019180704}
   - {fileID: 1764773166675126450}
   - {fileID: 1686418517}
-  - {fileID: 1366913308}
   - {fileID: 363290288}
-  - {fileID: 1860520318}
   - {fileID: 335621202}
-  - {fileID: 2020057003}
   - {fileID: 2095119165}
+  - {fileID: 1366913308}
+  - {fileID: 1860520318}
+  - {fileID: 2020057003}
   - {fileID: 2056262097}
   - {fileID: 491495760}
   - {fileID: 6943747813673323289}
