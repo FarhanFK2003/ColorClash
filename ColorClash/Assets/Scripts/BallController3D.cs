@@ -1039,6 +1039,339 @@
 //}
 
 
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+
+//public class BallController3D : MonoBehaviour
+//{
+//    public float power = 10f;
+//    public float maxDrag = 5f;
+//    public Rigidbody rb;
+//    public LineRenderer lr;
+//    public GameObject bluePlayer; // Reference to the blue player
+
+//    private Vector3 dragStartPos;
+//    private bool isDragging = false;
+//    private Camera mainCamera;
+//    private Animator bluePlayerAnimator;
+//    private Vector3 velocity;
+//    public float floorHeight = 0.1f; // Adjust this value based on your floor height
+//    private bool isThrowing = false;
+
+//    private void Start()
+//    {
+//        // Ensure the ball has a Rigidbody and LineRenderer component
+//        if (rb == null)
+//            rb = GetComponent<Rigidbody>();
+
+//        if (lr == null)
+//            lr = GetComponent<LineRenderer>();
+
+//        mainCamera = Camera.main;
+//        lr.positionCount = 0; // Initially hide the LineRenderer
+
+//        // Reference the blue player's animator
+//        if (bluePlayer != null)
+//        {
+//            bluePlayerAnimator = bluePlayer.GetComponent<Animator>();
+//        }
+
+//        // Ensure the ball is just above the floor
+//        Vector3 startPosition = transform.position;
+//        startPosition.y = floorHeight;
+//        transform.position = startPosition;
+
+//        // Adjust the drag to make sure the ball doesn't stop too quickly
+//        rb.drag = 0.1f; // Adjust this value to your preference
+//        rb.angularDrag = 0.05f; // Adjust this value to your preference
+
+//        // Initially set the ball to inactive
+//        gameObject.SetActive(false);
+//    }
+
+//    private void Update()
+//    {
+//        if (Input.touchCount > 0 && !isThrowing)
+//        {
+//            Touch touch = Input.GetTouch(0);
+//            Vector3 touchPosition = GetWorldPositionOnPlane(touch.position);
+
+//            if (touch.phase == TouchPhase.Began)
+//            {
+//                if (Vector3.Distance(touchPosition, bluePlayer.transform.position) < 1f) // Adjust this distance threshold as needed
+//                {
+//                    DragStart(touch);
+//                }
+//            }
+//            else if (touch.phase == TouchPhase.Moved && isDragging)
+//            {
+//                Dragging(touch);
+//            }
+//            else if (touch.phase == TouchPhase.Ended && isDragging)
+//            {
+//                DragRelease(touch);
+//            }
+//        }
+
+//        // Track velocity for reflection calculations
+//        velocity = rb.velocity;
+//    }
+
+//    private void DragStart(Touch touch)
+//    {
+//        dragStartPos = GetWorldPositionOnPlane(touch.position);
+//        lr.positionCount = 1;
+//        lr.SetPosition(0, dragStartPos);
+//        isDragging = true;
+
+//        // Play the raise hand animation
+//        if (bluePlayerAnimator != null)
+//        {
+//            bluePlayerAnimator.SetBool("isDragging", true);
+//        }
+//    }
+
+//    private void Dragging(Touch touch)
+//    {
+//        Vector3 draggingPos = GetWorldPositionOnPlane(touch.position);
+//        lr.positionCount = 2;
+//        lr.SetPosition(1, draggingPos);
+//    }
+
+//    private void DragRelease(Touch touch)
+//    {
+//        lr.positionCount = 0;
+//        isDragging = false;
+
+//        Vector3 dragReleasePos = GetWorldPositionOnPlane(touch.position);
+
+//        Vector3 force = dragStartPos - dragReleasePos;
+//        Vector3 clampedForce = Vector3.ClampMagnitude(force, maxDrag) * power;
+
+//        // Ensure the ball is just above the floor before applying the force
+//        Vector3 position = transform.position;
+//        position.y = floorHeight;
+//        transform.position = position;
+
+//        rb.AddForce(clampedForce, ForceMode.VelocityChange); // Using VelocityChange for smoother movement
+
+//        // Play the throw animation
+//        if (bluePlayerAnimator != null)
+//        {
+//            bluePlayerAnimator.SetBool("isDragging", false);
+//            bluePlayerAnimator.SetTrigger("isThrowing");
+//        }
+//    }
+
+//    private Vector3 GetWorldPositionOnPlane(Vector3 screenPosition)
+//    {
+//        Plane plane = new Plane(Vector3.up, Vector3.zero);
+//        Ray ray = mainCamera.ScreenPointToRay(screenPosition);
+//        if (plane.Raycast(ray, out float distance))
+//        {
+//            return ray.GetPoint(distance);
+//        }
+//        return Vector3.zero; // Return a default value if the ray does not hit the plane
+//    }
+
+//    // Method to activate the ball, called by the animation event
+//    public void OnThrowAnimationStart()
+//    {
+//        gameObject.SetActive(true);
+//    }
+
+//    // Method to deactivate the ball, called by the animation event
+//    //public void OnThrowAnimationEnd()
+//    //{
+//    //    isThrowing = false;
+//    //    gameObject.SetActive(false);
+//    //}
+
+//    private void OnCollisionEnter(Collision collision)
+//    {
+//        // Check for collision with red boxes and change their color to blue
+//        if (collision.gameObject.CompareTag("RedBox"))
+//        {
+//            Renderer renderer = collision.gameObject.GetComponent<Renderer>();
+//            if (renderer != null)
+//            {
+//                renderer.material.color = Color.blue;
+//            }
+//            gameObject.SetActive(false);
+//        }
+
+//        // Magnitude of the velocity vector is speed of the object (we will use it for constant speed so object never stop)
+//        float speed = velocity.magnitude;
+
+//        // Reflect params must be normalized so we get new direction
+//        Vector3 direction = Vector3.Reflect(velocity.normalized, collision.contacts[0].normal);
+
+//        // Like earlier wrote: velocity vector is magnitude (speed) and direction (a new one)
+//        rb.velocity = direction * speed;
+
+//        // Deactivate the ball upon collision with an obstacle
+//        //if (!collision.gameObject.CompareTag("Ground"))
+//        //{
+//        //    gameObject.SetActive(false);
+//        //}
+//    }
+//}
+
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+
+//public class BallController3D : MonoBehaviour
+//{
+//    public float power = 10f;
+//    public float maxDrag = 5f;
+//    public Rigidbody rb;
+//    public LineRenderer lr;
+//    public GameObject ballPrefab;
+//    public Transform ballSpawnPoint;
+//    public GameObject bluePlayer;
+
+//    private Vector3 dragStartPos;
+//    private bool isDragging = false;
+//    private Camera mainCamera;
+//    private Animator bluePlayerAnimator;
+//    private GameObject currentBall;
+
+//    private void Start()
+//    {
+//        // Ensure the ball has a Rigidbody and LineRenderer component
+//        if (rb == null)
+//            rb = GetComponent<Rigidbody>();
+
+//        if (lr == null)
+//            lr = GetComponent<LineRenderer>();
+
+//        mainCamera = Camera.main;
+//        lr.positionCount = 0; // Initially hide the LineRenderer
+
+//        // Get the Animator component from the player
+//        if (bluePlayer != null)
+//        {
+//            bluePlayerAnimator = bluePlayer.GetComponent<Animator>();
+//        }
+
+//        // Ensure the ball is initially inactive
+//        gameObject.SetActive(false);
+//    }
+
+//    private void Update()
+//    {
+//        if (Input.touchCount > 0 && !isDragging)
+//        {
+//            Touch touch = Input.GetTouch(0);
+//            Vector3 touchPosition = GetWorldPositionOnPlane(touch.position);
+
+//            if (touch.phase == TouchPhase.Began)
+//            {
+//                if (Vector3.Distance(touchPosition, bluePlayer.transform.position) < 1f) // Adjust this distance threshold as needed
+//                {
+//                    DragStart(touch);
+//                }
+//            }
+//            else if (touch.phase == TouchPhase.Moved && isDragging)
+//            {
+//                Dragging(touch);
+//            }
+//            else if (touch.phase == TouchPhase.Ended && isDragging)
+//            {
+//                DragRelease(touch);
+//            }
+//        }
+//    }
+
+//    private void DragStart(Touch touch)
+//    {
+//        dragStartPos = GetWorldPositionOnPlane(touch.position);
+//        lr.positionCount = 1;
+//        lr.SetPosition(0, dragStartPos);
+//        isDragging = true;
+
+//        // Play the raise hand animation
+//        if (bluePlayerAnimator != null)
+//        {
+//            bluePlayerAnimator.SetBool("isDragging", true);
+//        }
+//    }
+
+//    private void Dragging(Touch touch)
+//    {
+//        Vector3 draggingPos = GetWorldPositionOnPlane(touch.position);
+//        lr.positionCount = 2;
+//        lr.SetPosition(1, draggingPos);
+//    }
+
+//    private void DragRelease(Touch touch)
+//    {
+//        lr.positionCount = 0;
+//        isDragging = false;
+
+//        Vector3 dragReleasePos = GetWorldPositionOnPlane(touch.position);
+
+//        Vector3 force = dragStartPos - dragReleasePos;
+//        Vector3 clampedForce = Vector3.ClampMagnitude(force, maxDrag) * power;
+
+//        // Play the throw animation
+//        if (bluePlayerAnimator != null)
+//        {
+//            bluePlayerAnimator.SetBool("isDragging", false);
+//            bluePlayerAnimator.SetTrigger("isThrowing");
+//        }
+
+//        // Start the coroutine to instantiate the ball after the animation
+//        StartCoroutine(SpawnAndThrowBall(clampedForce));
+//    }
+
+//    private Vector3 GetWorldPositionOnPlane(Vector3 screenPosition)
+//    {
+//        Plane plane = new Plane(Vector3.up, Vector3.zero);
+//        Ray ray = mainCamera.ScreenPointToRay(screenPosition);
+//        if (plane.Raycast(ray, out float distance))
+//        {
+//            return ray.GetPoint(distance);
+//        }
+//        return Vector3.zero; // Return a default value if the ray does not hit the plane
+//    }
+
+//    private IEnumerator SpawnAndThrowBall(Vector3 force)
+//    {
+//        // Wait for the animation to complete (you might need to adjust the duration based on your animation length)
+//        yield return new WaitForSeconds(1.0f);
+
+//        // Instantiate and throw the ball
+//        if (ballPrefab != null && ballSpawnPoint != null)
+//        {
+//            currentBall = Instantiate(ballPrefab, ballSpawnPoint.position, ballSpawnPoint.rotation);
+//            Rigidbody rb = currentBall.GetComponent<Rigidbody>();
+//            rb.AddForce(force, ForceMode.VelocityChange);
+//        }
+//    }
+
+//    private void OnCollisionEnter(Collision collision)
+//    {
+//        if (collision.gameObject.CompareTag("Obstacle"))
+//        {
+//            // Deactivate the ball
+//            gameObject.SetActive(false);
+//        }
+
+//        if (collision.gameObject.CompareTag("RedBox"))
+//        {
+//            // Change the color of the red box to blue
+//            Renderer renderer = collision.gameObject.GetComponent<Renderer>();
+//            if (renderer != null)
+//            {
+//                renderer.material.color = Color.blue;
+//            }
+//        }
+//    }
+//}
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -1047,52 +1380,36 @@ public class BallController3D : MonoBehaviour
 {
     public float power = 10f;
     public float maxDrag = 5f;
-    public Rigidbody rb;
-    public LineRenderer lr;
-    public GameObject bluePlayer; // Reference to the blue player
+    public GameObject ballPrefab;
+    public Transform ballSpawnPoint;
+    public GameObject bluePlayer;
 
     private Vector3 dragStartPos;
     private bool isDragging = false;
     private Camera mainCamera;
     private Animator bluePlayerAnimator;
-    private Vector3 velocity;
-    public float floorHeight = 0.1f; // Adjust this value based on your floor height
-    private bool isThrowing = false;
+    private GameObject currentBall;
 
     private void Start()
     {
-        // Ensure the ball has a Rigidbody and LineRenderer component
-        if (rb == null)
-            rb = GetComponent<Rigidbody>();
-
-        if (lr == null)
-            lr = GetComponent<LineRenderer>();
-
         mainCamera = Camera.main;
-        lr.positionCount = 0; // Initially hide the LineRenderer
 
-        // Reference the blue player's animator
+        // Get the Animator component from the player
         if (bluePlayer != null)
         {
             bluePlayerAnimator = bluePlayer.GetComponent<Animator>();
         }
 
-        // Ensure the ball is just above the floor
-        Vector3 startPosition = transform.position;
-        startPosition.y = floorHeight;
-        transform.position = startPosition;
-
-        // Adjust the drag to make sure the ball doesn't stop too quickly
-        rb.drag = 0.1f; // Adjust this value to your preference
-        rb.angularDrag = 0.05f; // Adjust this value to your preference
-
-        // Initially set the ball to inactive
-        gameObject.SetActive(false);
+        // Ensure the ball prefab is inactive at the start
+        //if (ballPrefab != null)
+        //{
+        //    ballPrefab.SetActive(false);
+        //}
     }
 
     private void Update()
     {
-        if (Input.touchCount > 0 && !isThrowing)
+        if (Input.touchCount > 0 && !isDragging)
         {
             Touch touch = Input.GetTouch(0);
             Vector3 touchPosition = GetWorldPositionOnPlane(touch.position);
@@ -1113,16 +1430,11 @@ public class BallController3D : MonoBehaviour
                 DragRelease(touch);
             }
         }
-
-        // Track velocity for reflection calculations
-        velocity = rb.velocity;
     }
 
     private void DragStart(Touch touch)
     {
         dragStartPos = GetWorldPositionOnPlane(touch.position);
-        lr.positionCount = 1;
-        lr.SetPosition(0, dragStartPos);
         isDragging = true;
 
         // Play the raise hand animation
@@ -1135,13 +1447,10 @@ public class BallController3D : MonoBehaviour
     private void Dragging(Touch touch)
     {
         Vector3 draggingPos = GetWorldPositionOnPlane(touch.position);
-        lr.positionCount = 2;
-        lr.SetPosition(1, draggingPos);
     }
 
     private void DragRelease(Touch touch)
     {
-        lr.positionCount = 0;
         isDragging = false;
 
         Vector3 dragReleasePos = GetWorldPositionOnPlane(touch.position);
@@ -1149,19 +1458,15 @@ public class BallController3D : MonoBehaviour
         Vector3 force = dragStartPos - dragReleasePos;
         Vector3 clampedForce = Vector3.ClampMagnitude(force, maxDrag) * power;
 
-        // Ensure the ball is just above the floor before applying the force
-        Vector3 position = transform.position;
-        position.y = floorHeight;
-        transform.position = position;
-
-        rb.AddForce(clampedForce, ForceMode.VelocityChange); // Using VelocityChange for smoother movement
-
         // Play the throw animation
         if (bluePlayerAnimator != null)
         {
             bluePlayerAnimator.SetBool("isDragging", false);
             bluePlayerAnimator.SetTrigger("isThrowing");
         }
+
+        // Start the coroutine to instantiate the ball after the animation
+        StartCoroutine(SpawnAndThrowBall(clampedForce));
     }
 
     private Vector3 GetWorldPositionOnPlane(Vector3 screenPosition)
@@ -1175,45 +1480,20 @@ public class BallController3D : MonoBehaviour
         return Vector3.zero; // Return a default value if the ray does not hit the plane
     }
 
-    // Method to activate the ball, called by the animation event
-    public void OnThrowAnimationStart()
+    private IEnumerator SpawnAndThrowBall(Vector3 force)
     {
-        gameObject.SetActive(true);
-    }
+        // Wait for the animation to complete (adjust the duration based on your animation length)
+        yield return new WaitForSeconds(1.0f);
 
-    // Method to deactivate the ball, called by the animation event
-    //public void OnThrowAnimationEnd()
-    //{
-    //    isThrowing = false;
-    //    gameObject.SetActive(false);
-    //}
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        // Check for collision with red boxes and change their color to blue
-        if (collision.gameObject.CompareTag("RedBox"))
+        // Instantiate and throw the ball
+        if (ballPrefab != null && ballSpawnPoint != null)
         {
-            Renderer renderer = collision.gameObject.GetComponent<Renderer>();
-            if (renderer != null)
-            {
-                renderer.material.color = Color.blue;
-            }
-            gameObject.SetActive(false);
+            currentBall = Instantiate(ballPrefab, ballSpawnPoint.position, ballSpawnPoint.rotation);
+            currentBall.SetActive(true);
+            Rigidbody rb = currentBall.GetComponent<Rigidbody>();
+            rb.AddForce(force, ForceMode.VelocityChange);
         }
-
-        // Magnitude of the velocity vector is speed of the object (we will use it for constant speed so object never stop)
-        float speed = velocity.magnitude;
-
-        // Reflect params must be normalized so we get new direction
-        Vector3 direction = Vector3.Reflect(velocity.normalized, collision.contacts[0].normal);
-
-        // Like earlier wrote: velocity vector is magnitude (speed) and direction (a new one)
-        rb.velocity = direction * speed;
-
-        // Deactivate the ball upon collision with an obstacle
-        //if (!collision.gameObject.CompareTag("Ground"))
-        //{
-        //    gameObject.SetActive(false);
-        //}
     }
 }
+
+
