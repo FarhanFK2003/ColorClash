@@ -697,7 +697,7 @@ public class PlayerController : MonoBehaviour
     public Transform ballSpawnPoint;
     public float constantYPosition = 0.5f; // Adjust this value to your desired constant Y position
     public LineRenderer lr;
-    public float spawnDelay = 0.2f; // Time before the animation ends to spawn the ball (can be negative)
+    public float spawnDelay = 0.2f; // Time before the animation ends to spawn the ball
 
     private Vector3 dragStartPos;
     private bool isDragging = false;
@@ -814,12 +814,6 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(waitTime);
         }
 
-        // If spawnDelay is negative, wait for the remaining time
-        if (spawnDelay < 0)
-        {
-            yield return new WaitForSeconds(-spawnDelay);
-        }
-
         // Instantiate and throw the ball
         if (ballPrefab != null && ballSpawnPoint != null)
         {
@@ -840,4 +834,3 @@ public class PlayerController : MonoBehaviour
         }
     }
 }
-
