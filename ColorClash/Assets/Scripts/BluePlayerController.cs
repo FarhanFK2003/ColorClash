@@ -1217,11 +1217,12 @@
 //    }
 //}
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class BluePlayerController : MonoBehaviour
 {
     public float power = 10f;
     public float maxDrag = 5f;
@@ -1230,12 +1231,14 @@ public class PlayerController : MonoBehaviour
     public LineRenderer lr;
     public float spawnDelay = 0.2f; // Time before the animation ends to spawn the ball (can be negative)
     public Color blueColor = Color.blue; // The color to change the boxes to
+    public int maxBalls = 3; // Maximum number of balls that can be thrown
 
     private Vector3 dragStartPos;
     private bool isDragging = false;
     private Camera mainCamera;
     private Animator bluePlayerAnimator;
     private GameObject currentBall;
+    private int ballsRemaining;
 
     private void Start()
     {
@@ -1256,6 +1259,9 @@ public class PlayerController : MonoBehaviour
             lr = gameObject.AddComponent<LineRenderer>();
         }
         lr.positionCount = 0; // Initially hide the LineRenderer
+
+        // Initialize the ball counter
+        ballsRemaining = maxBalls;
     }
 
     private void Update()
@@ -1353,7 +1359,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Instantiate and throw the ball
-        if (ballPrefab != null && ballSpawnPoint != null)
+        if (ballPrefab != null && ballSpawnPoint != null && ballsRemaining > 0)
         {
             currentBall = Instantiate(ballPrefab, ballSpawnPoint.position, ballSpawnPoint.rotation);
             currentBall.SetActive(true);
@@ -1363,13 +1369,66 @@ public class PlayerController : MonoBehaviour
             // Attach a collision script to the ball
             BallCollisionHandler ballCollisionHandler = currentBall.AddComponent<BallCollisionHandler>();
             ballCollisionHandler.blueColor = blueColor;
+
+            ballCollisionHandler.playerController = this;
+
+            // Decrease the ball counter
+            ballsRemaining--;
         }
     }
+
+    public void RefillBall()
+    {
+        ballsRemaining++;
+    }
 }
+
+//public class BallCollisionHandler : MonoBehaviour
+//{
+//    public Color blueColor;
+//    private Rigidbody rb;
+//    private Vector3 velocity;
+
+//    private void Start()
+//    {
+//        rb = GetComponent<Rigidbody>();
+//        rb.useGravity = true; // Ensure gravity is enabled
+//    }
+
+//    private void Update()
+//    {
+//        // Track velocity, it holds magnitude and direction (for collision math)
+//        velocity = rb.velocity;
+//    }
+
+//    private void OnCollisionEnter(Collision collision)
+//    {
+//        // Check if the collided object has the "Box" tag
+//        if (collision.gameObject.CompareTag("Box"))
+//        {
+//            Renderer renderer = collision.gameObject.GetComponent<Renderer>();
+//            if (renderer != null)
+//            {
+//                renderer.material.color = blueColor;
+//            }
+
+//            // Destroy the ball upon collision with the box
+//            Destroy(gameObject);
+//        }
+//        else
+//        {
+//            // Maintain the ball's speed upon collision with other objects
+//            float speed = velocity.magnitude;
+//            Vector3 direction = Vector3.Reflect(velocity.normalized, collision.contacts[0].normal);
+//            rb.velocity = direction * speed;
+//        }
+//    }
+//}
 
 public class BallCollisionHandler : MonoBehaviour
 {
     public Color blueColor;
+    public BluePlayerController playerController; // Reference to the player controller
     private Rigidbody rb;
     private Vector3 velocity;
 
@@ -1394,6 +1453,12 @@ public class BallCollisionHandler : MonoBehaviour
             if (renderer != null)
             {
                 renderer.material.color = blueColor;
+            }
+
+            // Notify the player controller to refill a ball
+            if (playerController != null)
+            {
+                playerController.RefillBall();
             }
 
             // Destroy the ball upon collision with the box

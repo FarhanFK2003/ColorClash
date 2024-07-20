@@ -1305,7 +1305,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1963605976
 Transform:
   m_ObjectHideFlags: 0
@@ -1968,6 +1968,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RedPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631934235167069664, guid: 3d849df04cdd04d4594213309038060b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
