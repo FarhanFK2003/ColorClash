@@ -8,6 +8,8 @@ TagManager:
   - Blue Box
   - BluePlayer
   - Box
+  - Water
+  - RedPlayer
   layers:
   - Default
   - TransparentFX
