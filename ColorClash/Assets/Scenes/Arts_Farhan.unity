@@ -308,6 +308,11 @@ PrefabInstance:
       propertyPath: m_VertexColorAlwaysGammaSpace
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7341898004902477532, guid: c135a5031ed29c24fa7727e17c266779,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8335429942452708498, guid: c135a5031ed29c24fa7727e17c266779,
         type: 3}
       propertyPath: m_Name

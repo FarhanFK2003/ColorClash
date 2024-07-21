@@ -82,18 +82,29 @@ public class RedBallController : MonoBehaviour
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
+        if (rb == null)
+        {
+            Debug.LogError("Rigidbody component not found!");
+        }
         // Add force once at start
         rb.AddForce(Vector3.back * 3.0f, ForceMode.VelocityChange);
     }
 
     void Update()
     {
-        // Track velocity, it holds magnitude and direction (for collision math)
-        velocity = rb.velocity;
+        if (rb != null)
+        {
+            // Track velocity, it holds magnitude and direction (for collision math)
+            velocity = rb.velocity;
+        }
+
     }
 
     void OnCollisionEnter(Collision collision)
     {
+        if (rb == null) return;
+
         // Check if the collided object has the "Box" tag
         if (collision.gameObject.CompareTag("Box"))
         {

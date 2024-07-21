@@ -1217,6 +1217,50 @@
 //    }
 //}
 
+
+//public class BallCollisionHandler : MonoBehaviour
+//{
+//    public Color blueColor;
+//    private Rigidbody rb;
+//    private Vector3 velocity;
+
+//    private void Start()
+//    {
+//        rb = GetComponent<Rigidbody>();
+//        rb.useGravity = true; // Ensure gravity is enabled
+//    }
+
+//    private void Update()
+//    {
+//        // Track velocity, it holds magnitude and direction (for collision math)
+//        velocity = rb.velocity;
+//    }
+
+//    private void OnCollisionEnter(Collision collision)
+//    {
+//        // Check if the collided object has the "Box" tag
+//        if (collision.gameObject.CompareTag("Box"))
+//        {
+//            Renderer renderer = collision.gameObject.GetComponent<Renderer>();
+//            if (renderer != null)
+//            {
+//                renderer.material.color = blueColor;
+//            }
+
+//            // Destroy the ball upon collision with the box
+//            Destroy(gameObject);
+//        }
+//        else
+//        {
+//            // Maintain the ball's speed upon collision with other objects
+//            float speed = velocity.magnitude;
+//            Vector3 direction = Vector3.Reflect(velocity.normalized, collision.contacts[0].normal);
+//            rb.velocity = direction * speed;
+//        }
+//    }
+//}
+
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -1382,48 +1426,6 @@ public class BluePlayerController : MonoBehaviour
         ballsRemaining++;
     }
 }
-
-//public class BallCollisionHandler : MonoBehaviour
-//{
-//    public Color blueColor;
-//    private Rigidbody rb;
-//    private Vector3 velocity;
-
-//    private void Start()
-//    {
-//        rb = GetComponent<Rigidbody>();
-//        rb.useGravity = true; // Ensure gravity is enabled
-//    }
-
-//    private void Update()
-//    {
-//        // Track velocity, it holds magnitude and direction (for collision math)
-//        velocity = rb.velocity;
-//    }
-
-//    private void OnCollisionEnter(Collision collision)
-//    {
-//        // Check if the collided object has the "Box" tag
-//        if (collision.gameObject.CompareTag("Box"))
-//        {
-//            Renderer renderer = collision.gameObject.GetComponent<Renderer>();
-//            if (renderer != null)
-//            {
-//                renderer.material.color = blueColor;
-//            }
-
-//            // Destroy the ball upon collision with the box
-//            Destroy(gameObject);
-//        }
-//        else
-//        {
-//            // Maintain the ball's speed upon collision with other objects
-//            float speed = velocity.magnitude;
-//            Vector3 direction = Vector3.Reflect(velocity.normalized, collision.contacts[0].normal);
-//            rb.velocity = direction * speed;
-//        }
-//    }
-//}
 
 public class BallCollisionHandler : MonoBehaviour
 {
