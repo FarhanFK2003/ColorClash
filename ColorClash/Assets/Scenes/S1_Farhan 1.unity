@@ -1148,8 +1148,18 @@ PrefabInstance:
       objectReference: {fileID: 1545720324}
     - target: {fileID: 1707943368979618035, guid: 95a58da503ad2b941b23f0bd740a84d4,
         type: 3}
+      propertyPath: rotationSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707943368979618035, guid: 95a58da503ad2b941b23f0bd740a84d4,
+        type: 3}
       propertyPath: maxDragDistance
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707943368979618035, guid: 95a58da503ad2b941b23f0bd740a84d4,
+        type: 3}
+      propertyPath: returnRotationSpeed
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2447823851025659916, guid: 95a58da503ad2b941b23f0bd740a84d4,
         type: 3}
