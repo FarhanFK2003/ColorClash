@@ -2671,11 +2671,11 @@
 //    }
 //}
 
-
+// Updated for Slider only
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class BluePlayerController : MonoBehaviour
 {
     public float power = 10f;
@@ -2689,7 +2689,7 @@ public class BluePlayerController : MonoBehaviour
     public float maxDragDistance = 2f; // Maximum allowed distance to start dragging
     public float rotationSpeed = 5f; // Speed of rotation
     public float returnRotationSpeed = 2f; // Speed of returning to default rotation
-    public GameController gameController; // Reference to the GameController
+    public GameController gameController;
 
     private Vector3 dragStartPos;
     private bool isDragging = false;
@@ -2724,6 +2724,9 @@ public class BluePlayerController : MonoBehaviour
 
         // Store the default rotation
         defaultRotation = transform.rotation;
+
+        // Get the GameController component
+        gameController = FindObjectOfType<GameController>();
     }
 
     private void Update()
@@ -2854,8 +2857,8 @@ public class BluePlayerController : MonoBehaviour
             // Attach a collision script to the ball
             BallCollisionHandler ballCollisionHandler = currentBall.AddComponent<BallCollisionHandler>();
             ballCollisionHandler.blueColor = blueColor;
+
             ballCollisionHandler.playerController = this;
-            ballCollisionHandler.gameController = gameController; // Pass the game controller
 
             // Decrease the ball counter
             ballsRemaining--;
@@ -2882,14 +2885,16 @@ public class BallCollisionHandler : MonoBehaviour
 {
     public Color blueColor;
     public BluePlayerController playerController; // Reference to the player controller
-    public GameController gameController; // Reference to the GameController
     private Rigidbody rb;
     private Vector3 velocity;
-
+    private GameController gameController;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.useGravity = true; // Ensure gravity is enabled
+
+        // Get the GameController component
+        gameController = FindObjectOfType<GameController>();
     }
 
     private void Update()
@@ -2906,20 +2911,32 @@ public class BallCollisionHandler : MonoBehaviour
             Renderer renderer = collision.gameObject.GetComponent<Renderer>();
             if (renderer != null)
             {
-                renderer.material.color = blueColor;
+                Color currentColor = renderer.material.color;
+                string currentHexColor = ColorToHex(currentColor);
+                string blueHexColor = ColorToHex(blueColor);
 
-                // Notify the GameController of the color change
-                gameController.OnBoxColorChanged(collision.gameObject, true);
+                // Check if the box is already blue
+                if (currentHexColor != blueHexColor)
+                {
+                    // Change the color to blue
+                    renderer.material.color = blueColor;
+
+                    // Notify the game controller about the color change
+                    if (gameController != null)
+                    {
+                        gameController.OnBoxColorChanged(collision.gameObject, true);
+                    }
+                }
+
+                // Notify the player controller to refill a ball
+                if (playerController != null)
+                {
+                    playerController.RefillBall();
+                }
+
+                // Destroy the ball upon collision with the box
+                Destroy(gameObject);
             }
-
-            // Notify the player controller to refill a ball
-            if (playerController != null)
-            {
-                playerController.RefillBall();
-            }
-
-            // Destroy the ball upon collision with the box
-            Destroy(gameObject);
         }
         else
         {
@@ -2928,5 +2945,12 @@ public class BallCollisionHandler : MonoBehaviour
             Vector3 direction = Vector3.Reflect(velocity.normalized, collision.contacts[0].normal);
             rb.velocity = direction * speed;
         }
+    }
+
+    // Method to convert Color to hexadecimal string (needed here as well)
+    private string ColorToHex(Color color)
+    {
+        Color32 color32 = (Color32)color;
+        return $"#{color32.r:X2}{color32.g:X2}{color32.b:X2}";
     }
 }

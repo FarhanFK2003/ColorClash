@@ -32,7 +32,7 @@
 //    }
 //}
 
-
+// Updated
 //using System.Collections;
 //using System.Collections.Generic;
 //using UnityEngine;
@@ -69,6 +69,7 @@
 //    }
 //}
 
+// Updated for Slider Only
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -79,6 +80,7 @@ public class RedBallController : MonoBehaviour
     public Rigidbody rb;
     public Vector3 velocity;
     public Color redColor = Color.red; // The color to change the boxes to
+    public GameController gameController;
 
     void Start()
     {
@@ -89,6 +91,9 @@ public class RedBallController : MonoBehaviour
         }
         // Add force once at start
         rb.AddForce(Vector3.back * 3.0f, ForceMode.VelocityChange);
+
+        // Get the GameController component
+        gameController = FindObjectOfType<GameController>();
     }
 
     void Update()
@@ -98,7 +103,6 @@ public class RedBallController : MonoBehaviour
             // Track velocity, it holds magnitude and direction (for collision math)
             velocity = rb.velocity;
         }
-
     }
 
     void OnCollisionEnter(Collision collision)
@@ -111,11 +115,26 @@ public class RedBallController : MonoBehaviour
             Renderer renderer = collision.gameObject.GetComponent<Renderer>();
             if (renderer != null)
             {
-                renderer.material.color = redColor;
-            }
+                Color currentColor = renderer.material.color;
+                string currentHexColor = ColorToHex(currentColor);
+                string redHexColor = ColorToHex(redColor);
 
-            // Destroy the ball upon collision with the box
-            Destroy(gameObject);
+                // Check if the box is already red
+                if (currentHexColor != redHexColor)
+                {
+                    // Change the color to red
+                    renderer.material.color = redColor;
+
+                    // Notify the game controller about the color change
+                    if (gameController != null)
+                    {
+                        gameController.OnBoxColorChanged(collision.gameObject, false);
+                    }
+                }
+
+                // Destroy the ball upon collision with the box
+                Destroy(gameObject);
+            }
         }
         else
         {
@@ -124,5 +143,12 @@ public class RedBallController : MonoBehaviour
             Vector3 direction = Vector3.Reflect(velocity.normalized, collision.contacts[0].normal);
             rb.velocity = direction * speed;
         }
+    }
+
+    // Method to convert Color to hexadecimal string (needed here as well)
+    private string ColorToHex(Color color)
+    {
+        Color32 color32 = (Color32)color;
+        return $"#{color32.r:X2}{color32.g:X2}{color32.b:X2}";
     }
 }
