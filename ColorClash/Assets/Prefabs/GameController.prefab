@@ -56,3 +56,6 @@ MonoBehaviour:
   progressSlider: {fileID: 0}
   loseCanvas: {fileID: 0}
   winCanvas: {fileID: 0}
+  collisionSound: {fileID: 8300000, guid: 8a08738d9bbfa7e42ba0206b629c4df2, type: 3}
+  winSound: {fileID: 8300000, guid: d6afa479016976b4ba6d43abf258f348, type: 3}
+  loseSound: {fileID: 8300000, guid: 6190121e77553d340ae625ffb019ae14, type: 3}

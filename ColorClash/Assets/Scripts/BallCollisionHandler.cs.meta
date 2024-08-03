@@ -3,7 +3,10 @@ guid: 4d4bb61b54d863b459f2e19df98b97dd
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - playerController: {fileID: 1707943368979618035, guid: 95a58da503ad2b941b23f0bd740a84d4,
+      type: 3}
+  - collisionSound: {fileID: 8300000, guid: 8a08738d9bbfa7e42ba0206b629c4df2, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -427,11 +427,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueDroplet_ParticleSystem
       objectReference: {fileID: 0}
-    - target: {fileID: 4404786315032987035, guid: ed458c0c29257f04aa768071404dc9cb,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5358220183989695521, guid: ed458c0c29257f04aa768071404dc9cb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -499,11 +494,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RedDroplet_ParticleSystem
-      objectReference: {fileID: 0}
-    - target: {fileID: 310154430943839585, guid: e0aa4dff7c2bc6547854c936885f78fa,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8512002797363174958, guid: e0aa4dff7c2bc6547854c936885f78fa,
         type: 3}

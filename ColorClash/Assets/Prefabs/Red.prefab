@@ -57,7 +57,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f6ac84fed3f0c3645b3485cc20169022,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.016
+      value: -1.983
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f6ac84fed3f0c3645b3485cc20169022,
         type: 3}
@@ -67,7 +67,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f6ac84fed3f0c3645b3485cc20169022,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.9439998
+      value: 3.541
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f6ac84fed3f0c3645b3485cc20169022,
         type: 3}
@@ -606,12 +606,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87d0b30aee705c641ac7b291efbf6601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 3
+  power: 2
   ballPrefab: {fileID: 0}
   ballSpawnPoint: {fileID: 5482026421060328818}
   spawnDelay: 2
-  throwInterval: 3
+  throwInterval: 5
   throwDirections:
-  - {x: 0, y: 10, z: 0}
-  - {x: 5, y: 10, z: 0}
-  - {x: -5, y: 10, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 5, y: 0, z: 0}
+  - {x: -5, y: 0, z: 0}
+  - {x: 2, y: 5, z: 0}
+  - {x: -2, y: 5, z: 0}

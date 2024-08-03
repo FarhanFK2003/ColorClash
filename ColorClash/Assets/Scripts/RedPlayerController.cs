@@ -221,7 +221,7 @@ public class RedPlayerController : MonoBehaviour
             rb.AddForce(selectedDirection.normalized * power, ForceMode.VelocityChange);
 
             // Attach a collision script to the ball if needed
-            RedBallController ballController = currentBall.AddComponent<RedBallController>();
+            // RedBallController ballController = currentBall.AddComponent<RedBallController>();
         }
     }
 }

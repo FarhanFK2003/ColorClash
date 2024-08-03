@@ -132,6 +132,13 @@ public class RedBallController : MonoBehaviour
                     }
                 }
 
+                gameController.PlayCollisionSound();
+
+                // Play the particle effect at the box's position
+                gameController.PlayRedParticleEffect(collision.transform.position);
+
+                Debug.Log("Particle");
+
                 // Destroy the ball upon collision with the box
                 Destroy(gameObject);
             }
