@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 133377457a2642b428c77418dd6ff53b
+  - enabled: 1
+    path: Assets/Scenes/LS.unity
+    guid: 487b3307288f46940a3700dc1d693cd7
   - enabled: 0
     path: Assets/Scenes/S1_Farhan 1.unity
     guid: fa9e1a7b8b0244e4a9a4245bcb7cf0a2

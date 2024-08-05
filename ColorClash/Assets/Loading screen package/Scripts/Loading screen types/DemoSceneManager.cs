@@ -13,19 +13,20 @@ public class DemoSceneManager : MonoBehaviour
 
     private void Update()
     {
-        if (_canCheckForInput)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                _canCheckForInput = false;
-                _loadingManager.RevealLoadingScreen();
-            }
-        }
+        //if (_canCheckForInput)
+        //{
+        //    if (Input.GetMouseButtonDown(0))
+        //    {
+        //        _canCheckForInput = false;
+        //        _loadingManager.RevealLoadingScreen();
+        //    }
+        //}
+        _loadingManager.RevealLoadingScreen();
     }
 
     public void OnLoadingScreenRevealed()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("Level1");
     }
 
     public void OnLoadingScreenHided()
