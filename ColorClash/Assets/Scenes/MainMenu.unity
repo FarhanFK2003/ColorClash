@@ -442,7 +442,7 @@ PrefabInstance:
     - target: {fileID: 1619698096809121073, guid: c135a5031ed29c24fa7727e17c266779,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: S1_Farhan 1
+      value: Level1
       objectReference: {fileID: 0}
     - target: {fileID: 5267225519756227825, guid: c135a5031ed29c24fa7727e17c266779,
         type: 3}
@@ -453,6 +453,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_VertexColorAlwaysGammaSpace
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341898004902477532, guid: c135a5031ed29c24fa7727e17c266779,
+        type: 3}
+      propertyPath: m_Name
+      value: Play
       objectReference: {fileID: 0}
     - target: {fileID: 7341898004902477532, guid: c135a5031ed29c24fa7727e17c266779,
         type: 3}

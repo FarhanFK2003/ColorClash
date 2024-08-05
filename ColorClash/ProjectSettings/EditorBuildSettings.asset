@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 133377457a2642b428c77418dd6ff53b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/S1_Farhan 1.unity
     guid: fa9e1a7b8b0244e4a9a4245bcb7cf0a2
   - enabled: 1
@@ -17,6 +17,27 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level2.unity
     guid: 58207cb6b2972c64c8ee5bb8e65ff544
+  - enabled: 1
+    path: Assets/Scenes/Level3.unity
+    guid: e6eda62b8a5d11847a3f9da9e99d177b
+  - enabled: 1
+    path: Assets/Scenes/Level4.unity
+    guid: 38f36bc18dc5b3e4da2086c802c11c57
+  - enabled: 1
+    path: Assets/Scenes/Level5.unity
+    guid: a83fd80001440ff45869adac35dbf34a
+  - enabled: 1
+    path: Assets/Scenes/Level6.unity
+    guid: 5841e4cb9fab59b4aa8fc25c83346b2c
+  - enabled: 1
+    path: Assets/Scenes/Level7.unity
+    guid: f2ddc0fc4aba76f4daa4386ed3d6de33
+  - enabled: 1
+    path: Assets/Scenes/Level8.unity
+    guid: a324db8bb42da3f4aacf8969ad0e1f5b
+  - enabled: 1
+    path: Assets/Scenes/Level9.unity
+    guid: d664ceaad279a1c4794ba0bd4b8583c1
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000,
       guid: 7a478aeb0710a404b9c6e491fbc554d0, type: 2}
