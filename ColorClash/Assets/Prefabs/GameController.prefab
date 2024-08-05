@@ -59,3 +59,9 @@ MonoBehaviour:
   collisionSound: {fileID: 8300000, guid: 8a08738d9bbfa7e42ba0206b629c4df2, type: 3}
   winSound: {fileID: 8300000, guid: d6afa479016976b4ba6d43abf258f348, type: 3}
   loseSound: {fileID: 8300000, guid: 6190121e77553d340ae625ffb019ae14, type: 3}
+  blueParticleEffectPrefab: {fileID: 4404786315032987035, guid: ed458c0c29257f04aa768071404dc9cb,
+    type: 3}
+  redParticleEffectPrefab: {fileID: 310154430943839585, guid: e0aa4dff7c2bc6547854c936885f78fa,
+    type: 3}
+  bombParticleEffect: {fileID: 4914716930404006884, guid: 7216948d442ec0341bacd0527e8410be,
+    type: 3}

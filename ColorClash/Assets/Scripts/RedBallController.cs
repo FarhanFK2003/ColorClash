@@ -143,6 +143,57 @@ public class RedBallController : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        else if (collision.gameObject.CompareTag("StaticWall"))
+        {
+            gameController.PlayCollisionSound();
+
+            // Play the particle effect at the box's position
+            gameController.PlayRedParticleEffect(collision.transform.position);
+
+            // Destroy the ball upon collision with the wall
+            Destroy(gameObject);
+        }
+
+        else if (collision.gameObject.CompareTag("DestroyableWall"))
+        {
+            gameController.PlayCollisionSound();
+
+            // Play the particle effect at the box's position
+            gameController.PlayRedParticleEffect(collision.transform.position);
+
+            gameController.PlayBombParticleEffect(collision.transform.position);
+
+            Destroy(collision.gameObject);
+
+            // Destroy the ball upon collision with the wall
+            Destroy(gameObject);
+        }
+
+
+        else if (collision.gameObject.CompareTag("BlueBall"))
+        {
+            gameController.PlayCollisionSound();
+            // Play the particle effect at the static wall's position
+            gameController.PlayRedParticleEffect(collision.transform.position);
+
+            //Destroy(collision.gameObject);
+
+            Destroy(gameObject);
+        }
+
+        else if (collision.gameObject.CompareTag("RedBall"))
+        {
+            gameController.PlayCollisionSound();
+            // Play the particle effect at the static wall's position
+            gameController.PlayRedParticleEffect(collision.transform.position);
+
+            Destroy(collision.gameObject);
+
+            Destroy(gameObject);
+        }
+
+        // For game egdes and bounceable walls
         else
         {
             // Reflect params must be normalized so we get new direction

@@ -460,6 +460,7 @@ public class GameController : MonoBehaviour
     public AudioClip loseSound;
     public GameObject blueParticleEffectPrefab;
     public GameObject redParticleEffectPrefab;
+    public GameObject bombParticleEffect;
 
     private AudioSource audioSource;
     private int totalBoxes;
@@ -575,6 +576,23 @@ public class GameController : MonoBehaviour
         if (redParticleEffectPrefab != null)
         {
             GameObject particleEffect = Instantiate(redParticleEffectPrefab, position, Quaternion.identity);
+            ParticleSystem particleSystem = particleEffect.GetComponent<ParticleSystem>();
+            if (particleSystem != null)
+            {
+                Destroy(particleEffect, particleSystem.main.duration + 2);
+            }
+            else
+            {
+                Debug.LogError("ParticleSystem component is missing on the particleEffectPrefab!");
+            }
+        }
+    }
+
+    public void PlayBombParticleEffect(Vector3 position)
+    {
+        if (bombParticleEffect != null)
+        {
+            GameObject particleEffect = Instantiate(bombParticleEffect, position, Quaternion.identity);
             ParticleSystem particleSystem = particleEffect.GetComponent<ParticleSystem>();
             if (particleSystem != null)
             {

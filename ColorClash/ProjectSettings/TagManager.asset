@@ -10,6 +10,11 @@ TagManager:
   - Box
   - Water
   - RedPlayer
+  - StaticWall
+  - BounceableWall
+  - DestroyableWall
+  - BlueBall
+  - RedBall
   layers:
   - Default
   - TransparentFX
