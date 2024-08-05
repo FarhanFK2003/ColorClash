@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/S1_Farhan 1.unity
     guid: fa9e1a7b8b0244e4a9a4245bcb7cf0a2
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: 2fa5ee1edf4c1cc49b9f774ba516b45d
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000,
       guid: 7a478aeb0710a404b9c6e491fbc554d0, type: 2}
