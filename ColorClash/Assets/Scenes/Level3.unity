@@ -384,18 +384,33 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5024616957361336282, guid: 04efa9081f6737548a742dfba868faec,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6735581
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024616957361336282, guid: 04efa9081f6737548a742dfba868faec,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.76416236
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024616957361336282, guid: 04efa9081f6737548a742dfba868faec,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.68844485
+      objectReference: {fileID: 0}
+    - target: {fileID: 5024616957361336282, guid: 04efa9081f6737548a742dfba868faec,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.438
+      value: -1.413
       objectReference: {fileID: 0}
     - target: {fileID: 5024616957361336282, guid: 04efa9081f6737548a742dfba868faec,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5599
+      value: -0.53016
       objectReference: {fileID: 0}
     - target: {fileID: 5024616957361336282, guid: 04efa9081f6737548a742dfba868faec,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.033
+      value: 2.022
       objectReference: {fileID: 0}
     - target: {fileID: 5024616957361336282, guid: 04efa9081f6737548a742dfba868faec,
         type: 3}
@@ -2122,6 +2137,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 674668364437184407, guid: 95a58da503ad2b941b23f0bd740a84d4,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1707943368979618035, guid: 95a58da503ad2b941b23f0bd740a84d4,
         type: 3}
       propertyPath: ballCountText
@@ -3047,6 +3067,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RedPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8407605413016941179, guid: 3d849df04cdd04d4594213309038060b,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

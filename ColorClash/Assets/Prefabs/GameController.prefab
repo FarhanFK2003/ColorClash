@@ -65,3 +65,5 @@ MonoBehaviour:
     type: 3}
   bombParticleEffect: {fileID: 4914716930404006884, guid: 7216948d442ec0341bacd0527e8410be,
     type: 3}
+  hammerSound: {fileID: 8300000, guid: 7df945cde156f8a42a85155a07ce67cf, type: 3}
+  punchSound: {fileID: 8300000, guid: 30c88641b5fd910448d2b13d9053b9c7, type: 3}
