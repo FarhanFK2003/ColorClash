@@ -122,9 +122,11 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Update current time
-        currentTime -= Time.deltaTime;
-
+        if (currentTime > 0)
+        {
+            // Update current time
+            currentTime -= Time.deltaTime;
+        }
         // Clamp current time to avoid negative values
         if (currentTime < 0)
         {
@@ -134,6 +136,16 @@ public class Timer : MonoBehaviour
             if (gameController != null)
             {
                 gameController.CheckGameResult();
+
+                // Play red player animations based on the game result
+                if (gameController.GetBlueBoxCount() > gameController.GetRedBoxCount())
+                {
+                    gameController.PlayRedLoseAnimation();
+                }
+                else
+                {
+                    gameController.PlayRedWinAnimation();
+                }
             }
         }
 
@@ -157,3 +169,4 @@ public class Timer : MonoBehaviour
         }
     }
 }
+

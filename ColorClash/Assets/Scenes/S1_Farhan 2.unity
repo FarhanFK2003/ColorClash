@@ -221,7 +221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &217960796
 RectTransform:
   m_ObjectHideFlags: 0
@@ -344,7 +344,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &335621199
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -449,7 +449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &363290285
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -695,7 +695,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &491495757
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -806,6 +806,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a768f93e579a7549b0c9cf7b8842a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &653054102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6323544250149922721, guid: da58bab227ca2224f91384104ad6cc64,
+    type: 3}
+  m_PrefabInstance: {fileID: 431436201}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &810717243
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,6 +871,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1963605976}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &891405564 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6194288444215054719, guid: e7836888f860b65429cedb89351d9036,
+    type: 3}
+  m_PrefabInstance: {fileID: 2003459959}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &989749600
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,6 +1116,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d9ce987c0338fc4e9f6b1d0c1134db6, type: 3}
+--- !u!95 &1238028660 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5198648654092142621, guid: 3d849df04cdd04d4594213309038060b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1764773166675126450}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1291899781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,7 +1234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1366913305
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1653,6 +1671,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95a58da503ad2b941b23f0bd740a84d4, type: 3}
+--- !u!95 &1686418518 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3393373124048639877, guid: 95a58da503ad2b941b23f0bd740a84d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1686418517}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1860520314
 GameObject:
   m_ObjectHideFlags: 0
@@ -1671,7 +1695,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1860520315
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1942,7 +1966,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &2020057000
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2171,7 +2195,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &2056262094
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2276,7 +2300,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &2095119162
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2528,11 +2552,16 @@ PrefabInstance:
         type: 3}
       propertyPath: winCanvas
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 891405564}
     - target: {fileID: 6897315749976744026, guid: 74ea83edd3039f94995b0ba8253fe537,
         type: 3}
       propertyPath: loseCanvas
       value: 
+      objectReference: {fileID: 653054102}
+    - target: {fileID: 6897315749976744026, guid: 74ea83edd3039f94995b0ba8253fe537,
+        type: 3}
+      propertyPath: animationDelay
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6897315749976744026, guid: 74ea83edd3039f94995b0ba8253fe537,
         type: 3}
@@ -2544,6 +2573,16 @@ PrefabInstance:
       propertyPath: boxes.Array.size
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6897315749976744026, guid: 74ea83edd3039f94995b0ba8253fe537,
+        type: 3}
+      propertyPath: redPlayerAnimator
+      value: 
+      objectReference: {fileID: 1238028660}
+    - target: {fileID: 6897315749976744026, guid: 74ea83edd3039f94995b0ba8253fe537,
+        type: 3}
+      propertyPath: bluePlayerAnimator
+      value: 
+      objectReference: {fileID: 1686418518}
     - target: {fileID: 6897315749976744026, guid: 74ea83edd3039f94995b0ba8253fe537,
         type: 3}
       propertyPath: bombParticleEffect
@@ -2600,6 +2639,12 @@ PrefabInstance:
       propertyPath: boxes.Array.data[9]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6897315749976744026, guid: 74ea83edd3039f94995b0ba8253fe537,
+        type: 3}
+      propertyPath: confettiEffectPrefab
+      value: 
+      objectReference: {fileID: 2818883331687686157, guid: 8449a9a3aa4e9594186dbf93ca7c0f53,
+        type: 3}
     - target: {fileID: 6897315749976744026, guid: 74ea83edd3039f94995b0ba8253fe537,
         type: 3}
       propertyPath: redParticleEffectPrefab
@@ -2689,7 +2734,7 @@ PrefabInstance:
     - target: {fileID: 6631934235167069664, guid: 3d849df04cdd04d4594213309038060b,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3765,7 +3810,7 @@ PrefabInstance:
     - target: {fileID: 8505055459736231914, guid: 9987480e2d34bd8429ba42869d794355,
         type: 3}
       propertyPath: totalTime
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
