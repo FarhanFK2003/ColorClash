@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1804272283488029050}
   - component: {fileID: 5785695977522837180}
   - component: {fileID: 2874573944202161306}
+  - component: {fileID: 6727163096557910331}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -75,6 +76,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6727163096557910331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43064359780662503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b73aea2012e9ebf40899c85e71d16d31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayBeforeOscillation: 20
+  rotationSpeed: 20
+  rotationAmplitude: 5
+  alertSound: {fileID: 8300000, guid: 9d99d7f72bba2a147b6d235788015e3d, type: 3}
 --- !u!1 &960768972986080897
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,6 +618,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalTime: 30
   timerText: {fileID: 3001495518625743854}
+  rotationSpeed: 20
+  rotationAmplitude: 5
 --- !u!1 &3459443082609602752
 GameObject:
   m_ObjectHideFlags: 0
