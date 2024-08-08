@@ -2237,7 +2237,7 @@ public class GameController : MonoBehaviour
 
             // Wait for the duration of the win animation
             AnimatorStateInfo stateInfo = bluePlayerAnimator.GetCurrentAnimatorStateInfo(0);
-            yield return new WaitForSeconds(stateInfo.length + 2);
+            yield return new WaitForSeconds(stateInfo.length + 3);
 
             // Activate the win canvas
             winCanvas.SetActive(true);
@@ -2254,7 +2254,7 @@ public class GameController : MonoBehaviour
 
             // Wait for the duration of the lose animation
             AnimatorStateInfo stateInfo = bluePlayerAnimator.GetCurrentAnimatorStateInfo(0);
-            yield return new WaitForSeconds(stateInfo.length + 2);
+            yield return new WaitForSeconds(stateInfo.length + 3);
 
             // Activate the lose canvas
             loseCanvas.SetActive(true);

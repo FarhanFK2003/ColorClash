@@ -147,6 +147,86 @@
 //    }
 //}
 
+// Updated
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+
+//public class RedPlayerController : MonoBehaviour
+//{
+//    public float power = 10f;
+//    public GameObject ballPrefab;
+//    public Transform ballSpawnPoint;
+//    public float spawnDelay = 0.2f; // Time before the animation ends to spawn the ball (can be negative)
+//    public float throwInterval = 5f; // Interval between throws
+//    public List<Vector3> throwDirections = new List<Vector3>(); // List of predefined throw directions
+
+//    private Animator redPlayerAnimator;
+//    private GameObject currentBall;
+//    private System.Random random = new System.Random();
+
+//    private void Start()
+//    {
+//        // Get the Animator component from the player
+//        redPlayerAnimator = GetComponent<Animator>();
+
+//        // Start the throw routine
+//        StartCoroutine(ThrowRoutine());
+//    }
+
+//    private IEnumerator ThrowRoutine()
+//    {
+//        while (true)
+//        {
+//            // Wait for the specified interval before throwing the ball
+//            yield return new WaitForSeconds(throwInterval);
+
+//            // Play the throw animation
+//            if (redPlayerAnimator != null)
+//            {
+//                redPlayerAnimator.SetTrigger("isThrowing");
+//            }
+
+//            // Start the coroutine to instantiate the ball after the animation
+//            StartCoroutine(SpawnAndThrowBall());
+//        }
+//    }
+
+//    private IEnumerator SpawnAndThrowBall()
+//    {
+//        // Wait for the throw animation to almost complete
+//        AnimatorStateInfo stateInfo = redPlayerAnimator.GetCurrentAnimatorStateInfo(0);
+//        float waitTime = stateInfo.length - spawnDelay;
+//        if (waitTime > 0)
+//        {
+//            yield return new WaitForSeconds(waitTime);
+//        }
+
+//        // If spawnDelay is negative, wait for the remaining time
+//        if (spawnDelay < 0)
+//        {
+//            yield return new WaitForSeconds(-spawnDelay);
+//        }
+
+//        // Instantiate and throw the ball
+//        if (ballPrefab != null && ballSpawnPoint != null && throwDirections.Count > 0)
+//        {
+//            currentBall = Instantiate(ballPrefab, ballSpawnPoint.position, ballSpawnPoint.rotation);
+//            currentBall.SetActive(true);
+
+//            // Select a random direction from the list
+//            Vector3 selectedDirection = throwDirections[random.Next(throwDirections.Count)];
+
+//            // Apply force in the selected direction
+//            Rigidbody rb = currentBall.GetComponent<Rigidbody>();
+//            rb.AddForce(selectedDirection.normalized * power, ForceMode.VelocityChange);
+
+//            // Attach a collision script to the ball if needed
+//            // RedBallController ballController = currentBall.AddComponent<RedBallController>();
+//        }
+//    }
+//}
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -161,8 +241,9 @@ public class RedPlayerController : MonoBehaviour
     public List<Vector3> throwDirections = new List<Vector3>(); // List of predefined throw directions
 
     private Animator redPlayerAnimator;
-    private GameObject currentBall;
     private System.Random random = new System.Random();
+    private bool canSpawn = true;
+    private List<GameObject> spawnedRedBalls = new List<GameObject>();
 
     private void Start()
     {
@@ -175,7 +256,7 @@ public class RedPlayerController : MonoBehaviour
 
     private IEnumerator ThrowRoutine()
     {
-        while (true)
+        while (canSpawn)
         {
             // Wait for the specified interval before throwing the ball
             yield return new WaitForSeconds(throwInterval);
@@ -207,10 +288,10 @@ public class RedPlayerController : MonoBehaviour
             yield return new WaitForSeconds(-spawnDelay);
         }
 
-        // Instantiate and throw the ball
-        if (ballPrefab != null && ballSpawnPoint != null && throwDirections.Count > 0)
+        // Instantiate and throw the ball if spawning is allowed
+        if (canSpawn && ballPrefab != null && ballSpawnPoint != null && throwDirections.Count > 0)
         {
-            currentBall = Instantiate(ballPrefab, ballSpawnPoint.position, ballSpawnPoint.rotation);
+            GameObject currentBall = Instantiate(ballPrefab, ballSpawnPoint.position, ballSpawnPoint.rotation);
             currentBall.SetActive(true);
 
             // Select a random direction from the list
@@ -220,8 +301,24 @@ public class RedPlayerController : MonoBehaviour
             Rigidbody rb = currentBall.GetComponent<Rigidbody>();
             rb.AddForce(selectedDirection.normalized * power, ForceMode.VelocityChange);
 
-            // Attach a collision script to the ball if needed
-            // RedBallController ballController = currentBall.AddComponent<RedBallController>();
+            // Add the spawned ball to the list
+            spawnedRedBalls.Add(currentBall);
+        }
+    }
+
+    public void StopSpawning()
+    {
+        canSpawn = false;
+    }
+
+    public void DeactivateAllRedBalls()
+    {
+        foreach (var ball in spawnedRedBalls)
+        {
+            if (ball != null)
+            {
+                ball.SetActive(false);
+            }
         }
     }
 }
