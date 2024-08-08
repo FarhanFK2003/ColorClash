@@ -4353,6 +4353,7 @@ public class BluePlayerController : MonoBehaviour
                 arrow.SetActive(true);
                 arrow.transform.position = arrowInitialPosition;
                 // Initial rotation is set in Dragging method
+                arrow.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
         }
     }
