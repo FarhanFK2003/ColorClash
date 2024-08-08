@@ -1743,6 +1743,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1707943368979618035, guid: 95a58da503ad2b941b23f0bd740a84d4,
         type: 3}
+      propertyPath: arrow
+      value: 
+      objectReference: {fileID: 1618883918}
+    - target: {fileID: 1707943368979618035, guid: 95a58da503ad2b941b23f0bd740a84d4,
+        type: 3}
+      propertyPath: arrowPPU
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707943368979618035, guid: 95a58da503ad2b941b23f0bd740a84d4,
+        type: 3}
       propertyPath: ballCountText
       value: 
       objectReference: {fileID: 7648979174505278512}
@@ -1829,12 +1839,12 @@ PrefabInstance:
     - target: {fileID: 3754761011242144890, guid: 95a58da503ad2b941b23f0bd740a84d4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0007
+      value: 0.0013
       objectReference: {fileID: 0}
     - target: {fileID: 3754761011242144890, guid: 95a58da503ad2b941b23f0bd740a84d4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.04068
+      value: 0.0809
       objectReference: {fileID: 0}
     - target: {fileID: 5218478019835648872, guid: 95a58da503ad2b941b23f0bd740a84d4,
         type: 3}

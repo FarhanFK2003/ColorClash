@@ -2222,6 +2222,28 @@ public class GameController : MonoBehaviour
         }
     }
 
+    //private IEnumerator PlayWinAnimationAndShowCanvas()
+    //{
+    //    if (bluePlayerAnimator != null)
+    //    {
+    //        bluePlayerAnimator.SetTrigger("isWin");
+    //        PlayWinSound();
+
+    //        // Instantiate and play the confetti effect
+    //        if (confettiEffectPrefab != null)
+    //        {
+    //            Instantiate(confettiEffectPrefab, bluePlayerAnimator.transform.position, Quaternion.identity);
+    //        }
+
+    //        // Wait for the duration of the win animation
+    //        AnimatorStateInfo stateInfo = bluePlayerAnimator.GetCurrentAnimatorStateInfo(0);
+    //        yield return new WaitForSeconds(stateInfo.length + 3);
+
+    //        // Activate the win canvas
+    //        winCanvas.SetActive(true);
+    //    }
+    //}
+
     private IEnumerator PlayWinAnimationAndShowCanvas()
     {
         if (bluePlayerAnimator != null)
@@ -2229,10 +2251,20 @@ public class GameController : MonoBehaviour
             bluePlayerAnimator.SetTrigger("isWin");
             PlayWinSound();
 
-            // Instantiate and play the confetti effect
+            // Instantiate and play the confetti effect at the center of the stage
             if (confettiEffectPrefab != null)
             {
-                Instantiate(confettiEffectPrefab, bluePlayerAnimator.transform.position, Quaternion.identity);
+                Vector3 confettiPosition = new Vector3(-2, 0, 2); // Adjust this position to be at the center of your stage
+                GameObject confettiEffect = Instantiate(confettiEffectPrefab, confettiPosition, Quaternion.identity);
+                ParticleSystem particleSystem = confettiEffect.GetComponent<ParticleSystem>();
+                if (particleSystem != null)
+                {
+                    Destroy(confettiEffect, particleSystem.main.duration + 4);
+                }
+                else
+                {
+                    Debug.LogError("ParticleSystem component is missing on the confettiEffectPrefab!");
+                }
             }
 
             // Wait for the duration of the win animation

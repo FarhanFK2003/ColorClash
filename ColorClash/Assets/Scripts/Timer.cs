@@ -424,6 +424,14 @@ public class Timer : MonoBehaviour
         {
             currentTime = 0;
 
+            // Get the BluePlayerController and set the timer up flag
+            BluePlayerController bluePlayerController = FindObjectOfType<BluePlayerController>();
+            if (bluePlayerController != null)
+            {
+                bluePlayerController.SetTimerUp();
+            }
+
+
             // Disable the RedPlayerController
             if (redPlayerController != null)
             {

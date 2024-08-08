@@ -500,6 +500,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Confetti
       objectReference: {fileID: 0}
+    - target: {fileID: 7551978405274600068, guid: 8449a9a3aa4e9594186dbf93ca7c0f53,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551978405274600068, guid: 8449a9a3aa4e9594186dbf93ca7c0f53,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551978405274600068, guid: 8449a9a3aa4e9594186dbf93ca7c0f53,
+        type: 3}
+      propertyPath: InitialModule.startSizeY.minScalar
+      value: 0.013
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551978405274600068, guid: 8449a9a3aa4e9594186dbf93ca7c0f53,
+        type: 3}
+      propertyPath: InitialModule.startSizeZ.minScalar
+      value: 0.017
+      objectReference: {fileID: 0}
     - target: {fileID: 8715513050108094844, guid: 8449a9a3aa4e9594186dbf93ca7c0f53,
         type: 3}
       propertyPath: m_LocalPosition.x
