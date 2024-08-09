@@ -4098,18 +4098,19 @@ public class BluePlayerController : MonoBehaviour
         lr.SetPosition(1, draggingPos);
 
         // Calculate the direction and rotate the player on the y-axis in the opposite direction
-        Vector3 direction = draggingPos - transform.position;
-        float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-        float oppositeAngle = angle + 180f; // Rotate in the opposite direction
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, oppositeAngle, 0), Time.deltaTime * rotationSpeed);
+        //Vector3 direction = draggingPos - transform.position;
+        //float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+        //float oppositeAngle = angle + 180f; // Rotate in the opposite direction
+        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, oppositeAngle, 0), Time.deltaTime * rotationSpeed);
 
 
         // Update the arrow to point in the opposite direction of the line renderer
         if (arrow != null)
         {
-            //Vector3 direction = draggingPos - dragStartPos;
-            //float angle = Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg; // Angle in 2D plane (ignoring Y-axis)
-            arrow.transform.rotation = Quaternion.Euler(0, 0, angle); // Rotate opposite to the direction
+            Vector3 direction = draggingPos - dragStartPos;
+            float angle = Mathf.Atan2(-direction.z, direction.x) * Mathf.Rad2Deg; // Angle in 2D plane (ignoring Y-axis)
+            angle -= 90;    
+            arrow.transform.rotation = Quaternion.Euler(90, angle,90 ); // Rotate opposite to the direction
         }
     }
 

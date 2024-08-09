@@ -2066,12 +2066,17 @@ public class GameController : MonoBehaviour
     public Animator bluePlayerAnimator; // Reference to the Animator component
     public Animator redPlayerAnimator; // Add this line
 
+    public int levelNumber;
+
     private AudioSource audioSource;
     private int totalBoxes;
     private int blueBoxCount;
 
     private void Start()
     {
+
+        PlayerPrefs.SetInt("LevelUnlocked", levelNumber);
+
         totalBoxes = boxes.Count;
         progressSlider.maxValue = totalBoxes;
 

@@ -9,7 +9,7 @@ public class SceneManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        //PlayerPrefs.DeleteAll();    
     }
 
     public void LoadScene(string sceneName)

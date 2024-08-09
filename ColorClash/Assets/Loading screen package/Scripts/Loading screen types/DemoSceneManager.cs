@@ -26,7 +26,7 @@ public class DemoSceneManager : MonoBehaviour
 
     public void OnLoadingScreenRevealed()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene(PlayerPrefs.GetInt("LevelUnlocked",1));
     }
 
     public void OnLoadingScreenHided()
