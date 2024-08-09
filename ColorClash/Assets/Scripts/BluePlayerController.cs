@@ -4226,6 +4226,266 @@
 //}
 
 // Updated for Trail
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+//using TMPro;
+
+//public class BluePlayerController : MonoBehaviour
+//{
+//    public float power = 10f;
+//    public float maxDrag = 5f;
+//    public GameObject ballPrefab;
+//    public Transform ballSpawnPoint;
+//    public LineRenderer lr;
+//    public float spawnDelay = 0.2f; // Time before the animation ends to spawn the ball (can be negative)
+//    public Color blueColor = Color.blue; // The color to change the boxes to
+//    public int maxBalls = 3; // Maximum number of balls that can be thrown
+//    public float maxDragDistance = 2f; // Maximum allowed distance to start dragging
+//    public float rotationSpeed = 5f; // Speed of rotation
+//    public float returnRotationSpeed = 2f; // Speed of returning to default rotation
+//    public GameController gameController;
+//    public TextMeshProUGUI ballCountText; // Reference to the TextMeshProUGUI component
+//    public ParticleSystem trailParticleSystem; // Reference to the Particle System
+//    public Vector3 particleOffset = new Vector3(0, 1, 0); // Offset for the particle system position
+
+//    private Vector3 dragStartPos;
+//    private bool isDragging = false;
+//    private Camera mainCamera;
+//    private Animator bluePlayerAnimator;
+//    private GameObject currentBall;
+//    private int ballsRemaining;
+//    private Quaternion defaultRotation;
+//    private bool isTimerUp = false; // Flag to check if the timer is up
+
+//    private void Start()
+//    {
+//        mainCamera = Camera.main;
+
+//        // Ensure the ball prefab is inactive at the start
+//        if (ballPrefab != null)
+//        {
+//            ballPrefab.SetActive(false);
+//        }
+
+//        // Get the Animator component from the player
+//        bluePlayerAnimator = GetComponent<Animator>();
+
+//        // Ensure the LineRenderer component is attached
+//        if (lr == null)
+//        {
+//            lr = gameObject.AddComponent<LineRenderer>();
+//        }
+//        lr.positionCount = 0; // Initially hide the LineRenderer
+
+//        // Initialize the ball counter
+//        ballsRemaining = maxBalls;
+
+//        // Update the ball count text
+//        UpdateBallCountText();
+
+//        // Store the default rotation
+//        defaultRotation = transform.rotation;
+
+//        // Get the GameController component
+//        gameController = FindObjectOfType<GameController>();
+
+//        // Ensure the particle system is not playing at the start
+//        if (trailParticleSystem != null)
+//        {
+//            trailParticleSystem.Stop();
+//        }
+//    }
+
+//    private void Update()
+//    {
+//        if (isTimerUp)
+//        {
+//            return; // Exit if the timer is up
+//        }
+
+//        if (Input.touchCount > 0)
+//        {
+//            Touch touch = Input.GetTouch(0);
+//            Vector3 touchPosition = GetWorldPositionOnPlane(touch.position);
+
+//            if (touch.phase == TouchPhase.Began && !isDragging)
+//            {
+//                DragStart(touch, touchPosition);
+//            }
+//            else if (touch.phase == TouchPhase.Moved && isDragging)
+//            {
+//                Dragging(touch);
+//            }
+//            else if (touch.phase == TouchPhase.Ended && isDragging)
+//            {
+//                DragRelease(touch);
+//            }
+//        }
+//        else if (!isDragging)
+//        {
+//            // Smoothly return to default rotation when not dragging
+//            transform.rotation = Quaternion.Slerp(transform.rotation, defaultRotation, Time.deltaTime * returnRotationSpeed);
+//        }
+//    }
+
+//    private void DragStart(Touch touch, Vector3 touchPosition)
+//    {
+//        // Check if the touch is close enough to the blue player
+//        if (Vector3.Distance(touchPosition, transform.position) <= maxDragDistance)
+//        {
+//            dragStartPos = touchPosition;
+//            isDragging = true;
+
+//            // Start the particle system trail immediately
+//            if (trailParticleSystem != null)
+//            {
+//                trailParticleSystem.transform.position = transform.position + particleOffset;
+//                trailParticleSystem.Play();
+//            }
+
+//            // Calculate the initial direction and set the player's rotation
+//            Vector3 initialDirection = (dragStartPos - transform.position).normalized;
+//            float initialAngle = Mathf.Atan2(initialDirection.x, initialDirection.z) * Mathf.Rad2Deg;
+//            transform.rotation = Quaternion.Euler(0, initialAngle, 0);
+
+//            // Play the raise hand animation
+//            if (bluePlayerAnimator != null)
+//            {
+//                bluePlayerAnimator.SetBool("isDragging", true);
+//            }
+
+//            // Initialize the LineRenderer positions
+//            lr.positionCount = 1;
+//            lr.SetPosition(0, dragStartPos);
+//        }
+//    }
+
+//    private void Dragging(Touch touch)
+//    {
+//        Vector3 draggingPos = GetWorldPositionOnPlane(touch.position);
+//        lr.positionCount = 2;
+//        lr.SetPosition(1, draggingPos);
+
+//        // Calculate the direction and rotate the player on the y-axis in the opposite direction
+//        Vector3 direction = draggingPos - transform.position;
+//        float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+//        float oppositeAngle = angle + 180f; // Rotate in the opposite direction
+//        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, oppositeAngle, 0), Time.deltaTime * rotationSpeed);
+//    }
+
+//    private void DragRelease(Touch touch)
+//    {
+//        isDragging = false;
+//        Vector3 dragReleasePos = GetWorldPositionOnPlane(touch.position);
+
+//        Vector3 force = dragStartPos - dragReleasePos;
+//        Vector3 clampedForce = Vector3.ClampMagnitude(force, maxDrag) * power;
+
+//        // Play the throw animation
+//        if (bluePlayerAnimator != null)
+//        {
+//            bluePlayerAnimator.SetBool("isDragging", false);
+//            bluePlayerAnimator.SetTrigger("isThrowing");
+//        }
+
+//        // Start the coroutine to instantiate the ball after the animation
+//        StartCoroutine(SpawnAndThrowBall(clampedForce));
+
+//        // Hide the LineRenderer
+//        lr.positionCount = 0;
+
+//        // Stop the particle system trail immediately
+//        if (trailParticleSystem != null)
+//        {
+//            trailParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+//        }
+
+//        // Smoothly return to default rotation after the throw
+//        StartCoroutine(ReturnToDefaultRotation());
+//    }
+
+//    private Vector3 GetWorldPositionOnPlane(Vector3 screenPosition)
+//    {
+//        Plane plane = new Plane(Vector3.up, Vector3.zero);
+//        Ray ray = mainCamera.ScreenPointToRay(screenPosition);
+//        if (plane.Raycast(ray, out float distance))
+//        {
+//            return ray.GetPoint(distance);
+//        }
+//        return Vector3.zero; // Return a default value if the ray does not hit the plane
+//    }
+
+//    private IEnumerator SpawnAndThrowBall(Vector3 force)
+//    {
+//        // Wait for the throw animation to almost complete
+//        AnimatorStateInfo stateInfo = bluePlayerAnimator.GetCurrentAnimatorStateInfo(0);
+//        float waitTime = stateInfo.length - spawnDelay;
+//        if (waitTime > 0)
+//        {
+//            yield return new WaitForSeconds(waitTime);
+//        }
+
+//        // If spawnDelay is negative, wait for the remaining time
+//        if (spawnDelay < 0)
+//        {
+//            yield return new WaitForSeconds(-spawnDelay);
+//        }
+
+//        // Instantiate and throw the ball
+//        if (ballPrefab != null && ballSpawnPoint != null && ballsRemaining > 0)
+//        {
+//            currentBall = Instantiate(ballPrefab, ballSpawnPoint.position, ballSpawnPoint.rotation);
+//            currentBall.SetActive(true);
+//            Rigidbody rb = currentBall.GetComponent<Rigidbody>();
+//            rb.AddForce(force, ForceMode.VelocityChange);
+
+//            // Configure the collision script
+//            BallCollisionHandler ballCollisionHandler = currentBall.GetComponent<BallCollisionHandler>();
+//            ballCollisionHandler.blueColor = blueColor;
+
+//            // Decrease the ball counter
+//            ballsRemaining--;
+
+//            // Update the ball count text
+//            UpdateBallCountText();
+//        }
+//    }
+
+//    private IEnumerator ReturnToDefaultRotation()
+//    {
+//        while (Quaternion.Angle(transform.rotation, defaultRotation) > 0.1f)
+//        {
+//            transform.rotation = Quaternion.Slerp(transform.rotation, defaultRotation, Time.deltaTime * returnRotationSpeed);
+//            yield return null;
+//        }
+//        transform.rotation = defaultRotation;
+//    }
+
+//    public void RefillBall()
+//    {
+//        if (ballsRemaining < maxBalls)
+//        {
+//            ballsRemaining++;
+//            UpdateBallCountText();
+//        }
+//    }
+
+//    private void UpdateBallCountText()
+//    {
+//        if (ballCountText != null)
+//        {
+//            ballCountText.text = ballsRemaining.ToString();
+//        }
+//    }
+
+//    public void SetTimerUp()
+//    {
+//        isTimerUp = true;
+//    }
+//}
+
+// Updated Player Rotation
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -4367,11 +4627,15 @@ public class BluePlayerController : MonoBehaviour
         lr.positionCount = 2;
         lr.SetPosition(1, draggingPos);
 
-        // Calculate the direction and rotate the player on the y-axis in the opposite direction
-        Vector3 direction = draggingPos - transform.position;
-        float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-        float oppositeAngle = angle + 180f; // Rotate in the opposite direction
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, oppositeAngle, 0), Time.deltaTime * rotationSpeed);
+        // Calculate the direction from the LineRenderer's start to end position
+        //Vector3 direction = lr.GetPosition(1) - lr.GetPosition(0);
+        //float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, angle, 0), Time.deltaTime * rotationSpeed);
+
+        Vector3 direction = draggingPos - dragStartPos;
+        float angle = Mathf.Atan2(-direction.z, direction.x) * Mathf.Rad2Deg;
+        angle -= 90;
+        transform.rotation = Quaternion.Euler(0, angle, 0);
     }
 
     private void DragRelease(Touch touch)
