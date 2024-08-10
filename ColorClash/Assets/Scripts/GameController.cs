@@ -2213,6 +2213,7 @@ public class GameController : MonoBehaviour
         }
     }
 
+
     public void CheckGameResult()
     {
         int redBoxCount = totalBoxes - blueBoxCount;

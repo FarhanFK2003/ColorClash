@@ -227,6 +227,7 @@ public class BallCollisionHandler : MonoBehaviour
     private Vector3 velocity;
     private GameController gameController;
     private bool collidedWithDestroyableWall = false;
+    public Vector3 particleOffset = new Vector3(0, 1, 0); // Offset for the particle system position
 
     private void Start()
     {
@@ -328,6 +329,17 @@ public class BallCollisionHandler : MonoBehaviour
             gameController.PlayBlueParticleEffect(collision.transform.position);
 
             Destroy(collision.gameObject);
+
+            DestroyBall();
+        }
+
+        else if (collision.gameObject.CompareTag("RedPlayer"))
+        {
+            gameController.PlayCollisionSound();
+            // Play the particle effect at the static wall's position
+            gameController.PlayBlueParticleEffect(collision.transform.position + particleOffset);
+
+            //Destroy(collision.gameObject);
 
             DestroyBall();
         }

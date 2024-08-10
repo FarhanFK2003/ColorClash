@@ -261,3 +261,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blueColor: {r: 0, g: 0.827451, b: 1, a: 0}
+  particleOffset: {x: 0, y: 0.35, z: -0.2}

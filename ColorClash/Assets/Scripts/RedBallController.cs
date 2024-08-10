@@ -81,6 +81,7 @@ public class RedBallController : MonoBehaviour
     public Vector3 velocity;
     public Color redColor = Color.red; // The color to change the boxes to
     public GameController gameController;
+    public Vector3 particleOffset = new Vector3(0, 1, 0); // Offset for the particle system position
 
     void Start()
     {
@@ -189,6 +190,17 @@ public class RedBallController : MonoBehaviour
             gameController.PlayRedParticleEffect(collision.transform.position);
 
             Destroy(collision.gameObject);
+
+            Destroy(gameObject);
+        }
+
+        else if (collision.gameObject.CompareTag("BluePlayer"))
+        {
+            gameController.PlayCollisionSound();
+            // Play the particle effect at the static wall's position
+            gameController.PlayRedParticleEffect(collision.transform.position + particleOffset);
+
+            //Destroy(collision.gameObject);
 
             Destroy(gameObject);
         }

@@ -388,7 +388,7 @@ public class Timer : MonoBehaviour
 
     // References to the game objects that need to be deactivated
     public GameObject blueCursor;
-    public GameObject arrow;
+
 
     // Start is called before the first frame update
     void Start()
@@ -404,10 +404,7 @@ public class Timer : MonoBehaviour
         {
             blueCursor = GameObject.Find("BlueCursor");
         }
-        if (arrow == null)
-        {
-            arrow = GameObject.Find("Arrow");
-        }
+
     }
 
     // Update is called once per frame
@@ -444,10 +441,7 @@ public class Timer : MonoBehaviour
             {
                 blueCursor.SetActive(false);
             }
-            if (arrow != null)
-            {
-                arrow.SetActive(false);
-            }
+
 
             // Check the game result
             if (gameController != null)

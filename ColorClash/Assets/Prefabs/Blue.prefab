@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 8766006604653086551}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0087, y: 0.0212, z: 0.0128}
+  m_LocalPosition: {x: 0.0011, y: 0.0212, z: 0.0249}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -573,6 +573,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5359890729390200762}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f6ac84fed3f0c3645b3485cc20169022,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5158089465978073279}
   m_SourcePrefab: {fileID: 100100000, guid: f6ac84fed3f0c3645b3485cc20169022, type: 3}
 --- !u!1 &2447823851025659916 stripped
 GameObject:
@@ -628,7 +632,8 @@ MonoBehaviour:
   gameController: {fileID: 6897315749976744026, guid: 74ea83edd3039f94995b0ba8253fe537,
     type: 3}
   ballCountText: {fileID: 0}
-  arrow: {fileID: 0}
+  trailParticleSystem: {fileID: 0}
+  particleOffset: {x: 0, y: 1, z: 0}
 --- !u!120 &5359890729390200762
 LineRenderer:
   serializedVersion: 2
@@ -742,6 +747,27 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!65 &5158089465978073279
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2447823851025659916}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.020219779, y: 0.047440678, z: 0.019574657}
+  m_Center: {x: 0.00012443066, y: 0.024584321, z: 0.0005323604}
 --- !u!4 &3077008022156649142 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f6ac84fed3f0c3645b3485cc20169022,
