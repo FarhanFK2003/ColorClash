@@ -15,6 +15,9 @@ TagManager:
   - DestroyableWall
   - BlueBall
   - RedBall
+  - Punch
+  - Hammer
+  - Hammer1
   layers:
   - Default
   - TransparentFX

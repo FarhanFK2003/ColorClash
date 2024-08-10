@@ -1196,6 +1196,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 25033995493884534, guid: 3d9ce987c0338fc4e9f6b1d0c1134db6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hammer1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025295361505664226, guid: 3d9ce987c0338fc4e9f6b1d0c1134db6,
+        type: 3}
+      propertyPath: m_TagString
+      value: StaticWall
+      objectReference: {fileID: 0}
     - target: {fileID: 1970338278042723235, guid: 3d9ce987c0338fc4e9f6b1d0c1134db6,
         type: 3}
       propertyPath: m_CastShadows
@@ -1210,6 +1220,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5970643561290456988, guid: 3d9ce987c0338fc4e9f6b1d0c1134db6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6599275688680094719, guid: 3d9ce987c0338fc4e9f6b1d0c1134db6,
         type: 3}
@@ -3679,6 +3694,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 25033995493884534, guid: 3d9ce987c0338fc4e9f6b1d0c1134db6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Hammer
+      objectReference: {fileID: 0}
     - target: {fileID: 1970338278042723235, guid: 3d9ce987c0338fc4e9f6b1d0c1134db6,
         type: 3}
       propertyPath: m_CastShadows
@@ -3688,6 +3708,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hammer
+      objectReference: {fileID: 0}
+    - target: {fileID: 5970643561290456988, guid: 3d9ce987c0338fc4e9f6b1d0c1134db6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6599275688680094719, guid: 3d9ce987c0338fc4e9f6b1d0c1134db6,
         type: 3}

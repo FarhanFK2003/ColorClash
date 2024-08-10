@@ -82,6 +82,9 @@ public class RedBallController : MonoBehaviour
     public Color redColor = Color.red; // The color to change the boxes to
     public GameController gameController;
     public Vector3 particleOffset = new Vector3(0, 1, 0); // Offset for the particle system position
+    public Vector3 punchParticleOffset = new Vector3(0, 1, 0); // Offset for the particle system position
+    public Vector3 hammerParticleOffset = new Vector3(0, 1, 0); // Offset for the particle system position
+    public Vector3 hammer1ParticleOffset = new Vector3(0, 1, 0); // Offset for the particle system position
 
     void Start()
     {
@@ -150,7 +153,40 @@ public class RedBallController : MonoBehaviour
             gameController.PlayCollisionSound();
 
             // Play the particle effect at the box's position
-            gameController.PlayRedParticleEffect(collision.transform.position);
+            gameController.PlayRedParticleEffect(collision.transform.position + particleOffset);
+
+            // Destroy the ball upon collision with the wall
+            Destroy(gameObject);
+        }
+
+        else if (collision.gameObject.CompareTag("Punch"))
+        {
+            gameController.PlayCollisionSound();
+
+            // Play the particle effect at the box's position
+            gameController.PlayRedParticleEffect(collision.transform.position + punchParticleOffset);
+
+            // Destroy the ball upon collision with the wall
+            Destroy(gameObject);
+        }
+
+        else if (collision.gameObject.CompareTag("Hammer"))
+        {
+            gameController.PlayCollisionSound();
+
+            // Play the particle effect at the box's position
+            gameController.PlayRedParticleEffect(collision.transform.position + hammerParticleOffset);
+
+            // Destroy the ball upon collision with the wall
+            Destroy(gameObject);
+        }
+
+        else if (collision.gameObject.CompareTag("Hammer1"))
+        {
+            gameController.PlayCollisionSound();
+
+            // Play the particle effect at the box's position
+            gameController.PlayRedParticleEffect(collision.transform.position + hammer1ParticleOffset);
 
             // Destroy the ball upon collision with the wall
             Destroy(gameObject);

@@ -5556,9 +5556,14 @@ public class BluePlayerController : MonoBehaviour
         lr.SetPosition(1, draggingPos);
 
         // Calculate the direction from the LineRenderer's start to end position
+        //Vector3 direction = draggingPos - dragStartPos;
+        //float angle = Mathf.Atan2(-direction.z, direction.x) * Mathf.Rad2Deg;
+        //angle -= 90;
+        //transform.rotation = Quaternion.Euler(0, angle, 0);
+
         Vector3 direction = draggingPos - dragStartPos;
-        float angle = Mathf.Atan2(-direction.z, direction.x) * Mathf.Rad2Deg;
-        angle -= 90;
+        float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+        angle -= 180;
         transform.rotation = Quaternion.Euler(0, angle, 0);
     }
 

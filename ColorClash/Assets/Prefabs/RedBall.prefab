@@ -126,6 +126,9 @@ MonoBehaviour:
   gameController: {fileID: 6897315749976744026, guid: 74ea83edd3039f94995b0ba8253fe537,
     type: 3}
   particleOffset: {x: 0, y: 0.35, z: 0.2}
+  punchParticleOffset: {x: 1, y: 0.35, z: 0}
+  hammerParticleOffset: {x: 1, y: 0.35, z: 0}
+  hammer1ParticleOffset: {x: -1, y: 0.35, z: 0}
 --- !u!54 &3527117600176076657
 Rigidbody:
   m_ObjectHideFlags: 0
