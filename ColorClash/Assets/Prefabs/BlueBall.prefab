@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5592066767921049056}
   - component: {fileID: 6974434860138496452}
   - component: {fileID: 5549792552129564344}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BlueBall
   m_TagString: BlueBall
   m_Icon: {fileID: 0}
