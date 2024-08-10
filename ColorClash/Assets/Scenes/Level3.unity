@@ -2157,6 +2157,16 @@ PrefabInstance:
       propertyPath: maxDragDistance
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1707943368979618035, guid: 95a58da503ad2b941b23f0bd740a84d4,
+        type: 3}
+      propertyPath: particleOffset.y
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1707943368979618035, guid: 95a58da503ad2b941b23f0bd740a84d4,
+        type: 3}
+      propertyPath: trailParticleSystem
+      value: 
+      objectReference: {fileID: 1686418519}
     - target: {fileID: 2447823851025659916, guid: 95a58da503ad2b941b23f0bd740a84d4,
         type: 3}
       propertyPath: m_Name
@@ -2220,6 +2230,12 @@ PrefabInstance:
 --- !u!95 &1686418518 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3393373124048639877, guid: 95a58da503ad2b941b23f0bd740a84d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1686418517}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1686418519 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2440752571980712675, guid: 95a58da503ad2b941b23f0bd740a84d4,
     type: 3}
   m_PrefabInstance: {fileID: 1686418517}
   m_PrefabAsset: {fileID: 0}
