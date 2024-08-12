@@ -6,40 +6,40 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/Actual Scenes/MainMenu.unity
     guid: 133377457a2642b428c77418dd6ff53b
   - enabled: 1
-    path: Assets/Scenes/Level1.unity
+    path: Assets/Actual Scenes/Level1.unity
     guid: 2fa5ee1edf4c1cc49b9f774ba516b45d
   - enabled: 1
-    path: Assets/Scenes/Level2.unity
+    path: Assets/Actual Scenes/Level2.unity
     guid: 58207cb6b2972c64c8ee5bb8e65ff544
   - enabled: 1
-    path: Assets/Scenes/Level3.unity
+    path: Assets/Actual Scenes/Level3.unity
     guid: e6eda62b8a5d11847a3f9da9e99d177b
   - enabled: 1
-    path: Assets/Scenes/Level4.unity
+    path: Assets/Actual Scenes/Level4.unity
     guid: 38f36bc18dc5b3e4da2086c802c11c57
   - enabled: 1
-    path: Assets/Scenes/Level5.unity
+    path: Assets/Actual Scenes/Level5.unity
     guid: a83fd80001440ff45869adac35dbf34a
   - enabled: 1
-    path: Assets/Scenes/Level6.unity
+    path: Assets/Actual Scenes/Level6.unity
     guid: 5841e4cb9fab59b4aa8fc25c83346b2c
   - enabled: 1
-    path: Assets/Scenes/Level7.unity
+    path: Assets/Actual Scenes/Level7.unity
     guid: f2ddc0fc4aba76f4daa4386ed3d6de33
   - enabled: 1
-    path: Assets/Scenes/Level8.unity
+    path: Assets/Actual Scenes/Level8.unity
     guid: a324db8bb42da3f4aacf8969ad0e1f5b
   - enabled: 1
-    path: Assets/Scenes/Level9.unity
+    path: Assets/Actual Scenes/Level9.unity
     guid: d664ceaad279a1c4794ba0bd4b8583c1
   - enabled: 1
-    path: Assets/Scenes/Level10.unity
+    path: Assets/Actual Scenes/Level10.unity
     guid: 11f5dab828e9bc742a013deed05c0fd5
   - enabled: 1
-    path: Assets/Scenes/LS.unity
+    path: Assets/Actual Scenes/LS.unity
     guid: 487b3307288f46940a3700dc1d693cd7
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000,

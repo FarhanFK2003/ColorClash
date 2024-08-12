@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 851024939948173018}
   - component: {fileID: 1039150098077993404}
   - component: {fileID: 4641530105885136107}
+  - component: {fileID: 1125627267751676812}
   m_Layer: 5
   m_Name: Resume
   m_TagString: Untagged
@@ -157,6 +158,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &1125627267751676812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946473640900241997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 834a36fac72facc448b951db052a45c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  targetOffset: {x: 0, y: 15, z: 0}
 --- !u!1 &3496802914310095157
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,7 +356,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -0.0022605616}
-  m_SizeDelta: {x: 720.1264, y: 697.37}
+  m_SizeDelta: {x: 644.6, y: 613.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8988092499656146326
 CanvasRenderer:
@@ -550,7 +565,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 13, y: -86.23999}
+  m_AnchoredPosition: {x: 13, y: -49.3}
   m_SizeDelta: {x: 615.3671, y: 175.5155}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &6743547084395811666

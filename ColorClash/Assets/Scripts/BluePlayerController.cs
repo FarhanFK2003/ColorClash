@@ -5595,7 +5595,7 @@ public class BluePlayerController : MonoBehaviour
         }
 
         // Smoothly return to default rotation after the throw
-        StartCoroutine(ReturnToDefaultRotation());
+        //StartCoroutine(ReturnToDefaultRotation());
     }
 
     private Vector3 GetWorldPositionOnPlane(Vector3 screenPosition)
@@ -5645,15 +5645,15 @@ public class BluePlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator ReturnToDefaultRotation()
-    {
-        while (Quaternion.Angle(transform.rotation, defaultRotation) > 0.1f)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, defaultRotation, Time.deltaTime * returnRotationSpeed);
-            yield return null;
-        }
-        transform.rotation = defaultRotation;
-    }
+    //private IEnumerator ReturnToDefaultRotation()
+    //{
+    //    while (Quaternion.Angle(transform.rotation, defaultRotation) > 0.1f)
+    //    {
+    //        transform.rotation = Quaternion.Slerp(transform.rotation, defaultRotation, Time.deltaTime * returnRotationSpeed);
+    //        yield return null;
+    //    }
+    //    transform.rotation = defaultRotation;
+    //}
 
     public void RefillBall()
     {
