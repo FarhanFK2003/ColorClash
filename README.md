@@ -10,3 +10,35 @@ The ultimate aim of the player in "Color Clash" is to paint more objects in thei
 2. Visual Satisfaction: Seeing the grid fill up with one's color provides a gratifying visual experience.
 3. Simple Mechanics: The slingshot or drag-and-drop mechanic is easy to learn but offers depth in terms of aiming and timing.
 4. Time Pressure: The limited time frame adds a layer of excitement and urgency to the gameplay.
+
+**Build**
+
+The game is built using the Unity Mobile 3D mode. The version of Unity that is used is 2022.3.37f1. 
+
+# Screen Shots
+
+**Title**
+
+![Title](https://github.com/user-attachments/assets/77726eca-4d72-4e93-b7e0-4c448a4f6e88)
+
+
+**Levels**
+
+![Level 1](https://github.com/user-attachments/assets/0f1ced4f-6548-49cd-a9e7-594d6c87aa39)
+![Level 2](https://github.com/user-attachments/assets/c403dfdc-1191-4e27-8e31-88295bdf2bb1)
+![Level 3](https://github.com/user-attachments/assets/5853b431-93f2-45c8-9859-43ab2abe1361)
+![Level 4](https://github.com/user-attachments/assets/8bb0279f-2c18-49c3-b8a8-6bed3121e7a5)
+![Level 5](https://github.com/user-attachments/assets/c8bfb430-51d9-471a-9810-7f5dcb008d37)
+![Level 6](https://github.com/user-attachments/assets/6dfacde9-1486-41ee-9795-026f1d87a4bb)
+![Level 7](https://github.com/user-attachments/assets/290d61f9-a66c-4ad9-810f-abc5deb162f7)
+![Level 8](https://github.com/user-attachments/assets/f20b6fb4-65c9-43a6-819b-b27cfad7d585)
+![Level 9](https://github.com/user-attachments/assets/0d2deec7-a9a6-4988-89e5-7eceb43ad405)
+![Level 10](https://github.com/user-attachments/assets/079e6b82-5d55-4894-8343-a76efad59079)
+
+
+
+
+
+
+
+
